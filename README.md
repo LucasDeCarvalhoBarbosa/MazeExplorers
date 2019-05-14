@@ -59,7 +59,7 @@ Este software está sob a licença MIT. Isto significa que:
 - [x] Não há necessidade de documentação do código fonte.
 - [x] Não tem nenhuma posição em relação ao uso de patentes.
 
-A licença completa está no arquivo LICENSE, e pode ser acessada [aqui]().
+A licença completa está no arquivo LICENSE, e pode ser acessada [aqui](https://github.com/LucasDeCarvalhoBarbosa/MazeExplorers/blob/master/LICENSE).
 # Créditos
 São dados os créditos a biblioteca [Slick2D](http://slick.ninjacave.com/), 
 que é usada no projeto para a parte gráfica. A Slick2D é uma biblioteca para jogos em 2D
