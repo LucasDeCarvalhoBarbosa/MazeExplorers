@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         try{
-            AppGameContainer janela = new AppGameContainer(new TelaPrincipal("Tela"));
+            AppGameContainer janela = new AppGameContainer(new TelaPrincipal("Maze Explorers"));
             janela.setDisplayMode(1366, 768, true);//true
             janela.setShowFPS(true);//false
             janela.start();

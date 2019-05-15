@@ -351,7 +351,7 @@ public class No {
     
     @Override
     public String toString(){
-        return "("+linha+", "+coluna+")";
+        return "(linha="+linha+", coluna="+coluna+")";
     }
     
     //gets e stes
