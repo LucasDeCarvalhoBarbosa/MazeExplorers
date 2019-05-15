@@ -61,6 +61,8 @@ Este software está sob a licença MIT. Isto significa que:
 
 A licença completa está no arquivo LICENSE, e pode ser acessada [aqui](https://github.com/LucasDeCarvalhoBarbosa/MazeExplorers/blob/master/LICENSE).
 # Créditos
-São dados os créditos a biblioteca [Slick2D](http://slick.ninjacave.com/), 
+- São dados os créditos a biblioteca [Slick2D](http://slick.ninjacave.com/), 
 que é usada no projeto para a parte gráfica. A Slick2D é uma biblioteca para jogos em 2D
-na linguagem java, e é baseada na [LWJGL](https://www.lwjgl.org/) (Lightweight Java Game Library).
+na linguagem java, e é baseada na [LWJGL](https://www.lwjgl.org/) (Lightweight Java Game Library).  
+
+- Agradecimentos a Charles Gabriel, pelos sprites usados. Link para o seu blog: <http://cgartsenal.blogspot.com/>
