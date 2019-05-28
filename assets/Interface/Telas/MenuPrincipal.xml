@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nifty xmlns="http://nifty-gui.lessvoid.com/nifty-gui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://raw.githubusercontent.com/void256/nifty-gui/1.4/nifty-core/src/main/resources/nifty.xsd https://raw.githubusercontent.com/void256/nifty-gui/1.4/nifty-core/src/main/resources/nifty.xsd">
+	<registerSound id="entrando" filename="assets/Sounds/Click_Sharp_00.wav"/>
+	<registerSound id="cimaBotao" filename="assets/Sounds/Click_Soft_00.wav"/>
+	<registerSound id="clicar" filename="assets/Sounds/pcmouseclick1.wav"/>
+	<useStyles filename="nifty-default-styles.xml"/>
+    <useControls filename="nifty-default-controls.xml"/>
+	
+	<screen id="start" controller="View.Interface.MenuPrincipal">
+		<layer id="fundo" childLayout="center"><!-- backgroundColor="#FFFFFF" -->
+			<image filename="assets/Interface/fundo.jpg"></image>
+		</layer>
+		<layer id="frente" childLayout="vertical">
+			<panel id="titulo" width="60%" height="30%" align="center" childLayout="center"><!-- backgroundColor="#000000" -->
+				<control name="label" text="Maze Explorers" font="assets/Interface/Fonts/36/Xirod.fnt" width="100%" heigth="100%"/><!-- heigth="100" -->
+			</panel>
+			<panel id="explorar" width="35%" height="15%" align="center" childLayout="center" ><!-- backgroundColor="#FE2E2E" -->
+				<control name="button" label="Explorar" id="botaoExplorar" align="center" valign="center" width="70%" height="70%" visibleToMouse="true" >
+					<interact onClick="proximaTela(escolherTecnicas)"/>
+					<effect>
+						<onStartScreen name="move" mode="in" direction="left" length="300" startDelay="0" inherit="false"/>
+						<onStartScreen name="playSound" sound="entrando" startDelay="0"/>
+						<onHover name="playSound" sound="cimaBotao"/>
+						<onClick name="playSound" sound="clicar"/>
+					</effect>
+				</control>
+			</panel>
+			<panel id="configuracoes" width="35%" height="15%" align="center" childLayout="center" ><!-- backgroundColor="#2E2EFE" -->
+				<control name="button" label="Configuracoes" id="botaoConfiguracoes" align="center" valign="center" width="70%" height="70%" visibleToMouse="true">
+					<effect>
+						<onStartScreen name="move" mode="in" direction="left" length="300" startDelay="200" inherit="false"/>
+						<onStartScreen name="playSound" sound="entrando" startDelay="200"/>
+						<onHover name="playSound" sound="cimaBotao"/>
+						<onClick name="playSound" sound="clicar"/>
+					</effect>
+				</control>
+			</panel>
+			<panel id="creditos" width="35%" height="15%" align="center" childLayout="center" ><!-- backgroundColor="#00FF00" -->
+				<control name="button" label="Créditos" id="botaoCreditos" align="center" valign="center" width="70%" height="70%" visibleToMouse="true">
+					<interact onClick="proximaTela(creditos)"/>
+					<effect>
+						<onStartScreen name="move" mode="in" direction="left" length="300" startDelay="400" inherit="false"/>
+						<onStartScreen name="playSound" sound="entrando" startDelay="400"/>
+						<onHover name="playSound" sound="cimaBotao"/>
+						<onClick name="playSound" sound="clicar"/>
+					</effect>
+				</control>
+			</panel>
+			<panel id="sair" width="35%" height="15%" align="center" childLayout="center" ><!-- backgroundColor="#FFFF00" -->
+				<control name="button" label="Sair" id="botaoSair" align="center" valign="center" width="70%" height="70%" visibleToMouse="true" >
+					<interact onClick="sair()"/>
+					<effect>
+						<onStartScreen name="move" mode="in" direction="left" length="300" startDelay="600" inherit="false"/>
+						<onStartScreen name="playSound" sound="entrando" startDelay="600"/>
+						<onHover name="playSound" sound="cimaBotao"/>
+						<onClick name="playSound" sound="clicar"/>
+					</effect>
+				</control>
+			</panel>
+		</layer>
+	</screen>
+</nifty>

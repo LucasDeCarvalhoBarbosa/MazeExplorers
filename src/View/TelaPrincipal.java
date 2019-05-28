@@ -1,14 +1,15 @@
 package View;
 
+import Biblioteca.Direcoes.DirecaoBaixo;
+import Biblioteca.Direcoes.DirecaoCima;
 import Biblioteca.Direcoes.DirecaoDireita;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.newdawn.slick.AppGameContainer;
+import Biblioteca.Direcoes.DirecaoEsquerda;
+import Biblioteca.No;
+import Control.Ponto;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.tiled.TiledMap;
 
 /**
  *
@@ -25,18 +26,26 @@ public class TelaPrincipal extends BasicGame{
 
     @Override
     public void init(GameContainer container) throws SlickException {
-        labirintoVisual = Modelos.geraLabirinto(3);
-        sprite = new Sprite(new DirecaoDireita());
+        labirintoVisual = Modelos.geraLabirinto(0);
+        sprite = new Sprite(labirintoVisual.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio()), new DirecaoDireita());
+        
+        //testando a traduão de npos para pontos na tela.
+        System.out.println(labirintoVisual.getLabirinto().getInicio());
+        System.out.println(labirintoVisual.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio()));
     }
 
     @Override
     public void update(GameContainer container, int delta) throws SlickException {
+        
+        //testando a movimentação
+        //sprite.andarDireita(container, delta, new DirecaoEsquerda());
+        //sprite.andarEsquerda(container, delta, new DirecaoDireita());
     }
     
     @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
-        labirintoVisual.mapa.render(0, 0);
-        //sprite.desenha(32, 32);
+        labirintoVisual.getMapa().render((int) labirintoVisual.getLocalizacao().getX(), (int) labirintoVisual.getLocalizacao().getY());
+        sprite.desenha(sprite.getLocalizacao().getX(), sprite.getLocalizacao().getY());
     }
     
 }
