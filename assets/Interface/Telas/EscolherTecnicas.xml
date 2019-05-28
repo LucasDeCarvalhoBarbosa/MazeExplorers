@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nifty xmlns="http://nifty-gui.lessvoid.com/nifty-gui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://raw.githubusercontent.com/void256/nifty-gui/1.4/nifty-core/src/main/resources/nifty.xsd https://raw.githubusercontent.com/void256/nifty-gui/1.4/nifty-core/src/main/resources/nifty.xsd">
+    <registerSound id="entrando" filename="assets/Sounds/Click_Sharp_00.wav"/>
+	<registerSound id="cimaBotao" filename="assets/Sounds/Click_Soft_00.wav"/>
+	<registerSound id="clicar" filename="assets/Sounds/pcmouseclick1.wav"/>
+	<useStyles filename="nifty-default-styles.xml"/>
+    <useControls filename="nifty-default-controls.xml"/>
+	
+	<screen id="escolherTecnicas" controller="View.Interface.EscolherTecnicas">
+		<layer id="fundo" childLayout="center">
+			<image filename="assets/Interface/fundo.jpg"></image>
+		</layer>
+		<layer id="frente" childLayout="vertical">
+			<panel id="titulo" width="60%" height="15%" align="center" childLayout="center">
+				<control name="label" text="Selecione a(s) técnica(s) para explorar o labirinto" font="assets/Interface/Fonts/16/Xirod.fnt" width="100%" heigth="100"/>
+			</panel>
+			<panel id="restante" width="100%" height="85%" align="center" childLayout="horizontal">
+				<panel id="espaco1" width="15%" height="100%" align="center" childLayout="center">
+				</panel>
+				<panel id="conteudo" width="85%" height="100%" align="center" childLayout="vertical">
+					<panel id="caixasSelecao" width="70%" height="76%" align="center" childLayout="vertical">
+						<panel id="espaco2" width="100%" height="5%"/>
+						<panel id="paineBuscaEmLargura" width="100%" height="10%" align="center" childLayout="horizontal">
+							<panel id="espaco3" width="5%" height="100%"/>
+							<control name="checkbox" id="buscaEmLargura" width="5%" height="55%">
+								<effect>
+									<onHover name="playSound" sound="cimaBotao"/>
+									<onClick name="playSound" sound="clicar"/>
+								</effect>
+							</control>
+							<control name="label" text="Busca em Largura" font="assets/Interface/Fonts/16/Xirod.fnt" width="50%" height="55%"/>
+							<panel id="espaco4" width="20%" height="100%"/>
+							<control name="button" label="i" id="InfBuscaEmLargura" width="5%" height="55%" visibleToMouse="true">
+								<interact onClick="proximaTela(ExplicacaoBuscaEmLargura)"/>
+							</control>
+							<effect>
+								<onStartScreen name="move" mode="in" direction="left" length="300" startDelay="0" inherit="true"/>
+								<onStartScreen name="playSound" sound="entrando" startDelay="0"/>
+							</effect>
+						</panel>
+						<panel id="espaco5" width="100%" height="15%"/>
+						<panel id="paineBuscaEmProfundidade" width="100%" height="10%" align="center" childLayout="horizontal">
+							<panel id="espaco6" width="5%" height="100%"/>
+							<control name="checkbox" id="buscaEmProfundidade" width="5%" height="55%"/>
+							<control name="label" text="Busca em Profundidade" font="assets/Interface/Fonts/16/Xirod.fnt" width="64%" height="55%">
+								<effect>
+									<onHover name="playSound" sound="cimaBotao"/>
+									<onClick name="playSound" sound="clicar"/>
+								</effect>
+							</control>
+							<panel id="espaco7" width="6%" height="100%"/>
+							<control name="button" label="i" id="InfBuscaEmProfundidade" width="5%" height="55%" visibleToMouse="true">
+								<interact onClick="proximaTela(ExplicacaoBuscaEmProfundidade)"/>
+							</control>
+							<effect>
+								<onStartScreen name="move" mode="in" direction="left" length="300" startDelay="200" inherit="true"/>
+								<onStartScreen name="playSound" sound="entrando" startDelay="200"/>
+							</effect>
+						</panel>
+						<panel id="espaco8" width="100%" height="15%"/>
+						<panel id="painelBuscaGulosa" width="100%" height="10%" align="center" childLayout="horizontal">
+							<panel id="espaco9" width="5%" height="100%"/>
+							<control name="checkbox" id="buscaGulosa" width="5%" height="55%">
+								<effect>
+									<onHover name="playSound" sound="cimaBotao"/>
+									<onClick name="playSound" sound="clicar"/>
+								</effect>
+							</control>
+							<control name="label" text="Busca Gulosa" font="assets/Interface/Fonts/16/Xirod.fnt" width="40%" height="55%"/>
+							<panel id="espaco10" width="30%" height="100%"/>
+							<control name="button" label="i" id="InfBuscaGulosa" width="5%" height="55%" visibleToMouse="true">
+								<interact onClick="proximaTela(ExplicacaoBuscaGulosa)"/>
+							</control>
+							<effect>
+								<onStartScreen name="move" mode="in" direction="left" length="300" startDelay="400" inherit="true"/>
+								<onStartScreen name="playSound" sound="entrando" startDelay="400"/>
+							</effect>
+						</panel>
+						<panel id="espaco11" width="100%" height="15%"/>
+						<panel id="painelBuscaAEstrela" width="100%" height="10%" align="center" childLayout="horizontal">
+							<panel id="espaco12" width="5%" height="100%"/>
+							<control name="checkbox" id="buscaAEstrela" width="5%" height="55%">
+							<effect>
+								<onHover name="playSound" sound="cimaBotao"/>
+								<onClick name="playSound" sound="clicar"/>
+							</effect>
+							</control>
+							<control name="label" text="Busca A*" font="assets/Interface/Fonts/16/Xirod.fnt" width="25%" height="55%"/>
+							<panel id="espaco13" width="45%" height="100%"/>
+							<control name="button" label="i" id="InfBuscaAEstrela" width="5%" height="55%" visibleToMouse="true">
+								<interact onClick="proximaTela(ExplicacaoBuscaAEstrela)"/>
+							</control>
+							<effect>
+								<onStartScreen name="move" mode="in" direction="left" length="300" startDelay="600" inherit="true"/>
+								<onStartScreen name="playSound" sound="entrando" startDelay="600"/>
+							</effect>
+						</panel>
+					</panel>
+					<panel id="espaco14" width="100%" height="5%"/>
+					<panel id="botoes" width="100%" height="20%" align="center" childLayout="horizontal">
+						<panel id="espaco15" width="45%" height="100%"/>
+						<control name="button" label="Voltar" id="botaoVoltar" width="12%" height="50%" visibleToMouse="true">
+							<interact onClick="proximaTela(start)"/>
+							<effect>
+								<onStartScreen name="move" mode="in" direction="left" length="300" startDelay="1000" inherit="false"/>
+								<onStartScreen name="playSound" sound="entrando" startDelay="1000"/>
+								<onHover name="playSound" sound="cimaBotao"/>
+								<onClick name="playSound" sound="clicar"/>
+							</effect>
+						</control>
+						<panel name="espaco16" width="10%" height="100%"/>
+						<control name="button" label="Confirmar" id="botaoConfirmar" width="12%" height="50%" visibleToMouse="true">
+							<interact onClick="proximaTela(TelaLabirinto)"/>
+							<effect>
+								<onStartScreen name="move" mode="in" direction="left" length="300" startDelay="800" inherit="false"/>
+								<onStartScreen name="playSound" sound="entrando" startDelay="800"/>
+								<onHover name="playSound" sound="cimaBotao"/>
+								<onClick name="playSound" sound="clicar"/>
+							</effect>
+						</control>
+					</panel>
+				</panel>
+			</panel>
+		</layer>
+	</screen>
+</nifty>

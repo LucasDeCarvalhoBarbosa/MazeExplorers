@@ -6,8 +6,6 @@ import Biblioteca.Direcoes.DirecaoDireita;
 import Biblioteca.Direcoes.DirecaoEsquerda;
 import Biblioteca.No;
 import Control.Ponto;
-import View.Entrada.ContextoDeEntrada;
-import View.Entrada.EntradaMenu;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -21,7 +19,6 @@ public class TelaPrincipal extends BasicGame{
     
     private LabirintoVisual labirintoVisual;
     private Sprite sprite;
-    private ContextoDeEntrada entrada;
 
     public TelaPrincipal(String title) {
         super(title);
@@ -29,7 +26,6 @@ public class TelaPrincipal extends BasicGame{
 
     @Override
     public void init(GameContainer container) throws SlickException {
-        entrada = new EntradaMenu(container.getInput(), labirintoVisual);
         labirintoVisual = Modelos.geraLabirinto(0);
         sprite = new Sprite(labirintoVisual.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio()), new DirecaoDireita());
         
@@ -40,7 +36,6 @@ public class TelaPrincipal extends BasicGame{
 
     @Override
     public void update(GameContainer container, int delta) throws SlickException {
-        entrada.verificarEntrada();
         
         //testando a movimentação
         //sprite.andarDireita(container, delta, new DirecaoEsquerda());
