@@ -9,6 +9,7 @@ import Biblioteca.Direcoes.DirecaoCimaDireita;
 import Biblioteca.Direcoes.DirecaoCimaEsquerda;
 import Biblioteca.Direcoes.DirecaoDireita;
 import Biblioteca.Direcoes.DirecaoEsquerda;
+import Control.Ponto;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
@@ -20,14 +21,19 @@ import org.newdawn.slick.SlickException;
  */
 public class Sprite {
     
+    private Ponto localizacao;
+    private float velocidade;
+    
     private Animation atual;
+    private final Animation cima;
+    private final Animation direita;
+    private final Animation baixo;
+    private final Animation esquerda;
     
-    private Animation cima;
-    private Animation direita;
-    private Animation baixo;
-    private Animation esquerda;
-    
-    public Sprite(Direcao direcaoInicial) throws SlickException{
+    public Sprite(Ponto localizacao, Direcao direcaoInicial) throws SlickException{
+        this.localizacao = localizacao;
+        this.velocidade = 0.06f;
+        
         String caminho = "assets/Sprites/personagem1/";
         
         Image[] imagensCima = new Image[]{new Image(caminho+"cima1.png"), new Image(caminho+"cima2.png"), new Image(caminho+"cima3.png")};
@@ -66,19 +72,44 @@ public class Sprite {
     }
     
     public void andarCima(GameContainer container, int delta, Direcao direcaoAnterior){
-        
+        atual = cima;
+        atual.update(delta);
+        localizacao.setY( (localizacao.getY() - (delta * velocidade)));
     }
     
     public void andarDireita(GameContainer container, int delta, Direcao direcaoAnterior){
-        
+        atual = direita;
+        atual.update(delta);
+        localizacao.setX( (localizacao.getX() + (delta * velocidade)));
     }
     
     public void andarBaixo(GameContainer container, int delta, Direcao direcaoAnterior){
-        
+        atual = baixo;
+        atual.update(delta);
+        localizacao.setY( (localizacao.getY() + (delta * velocidade)));
     }
     
     public void andarEsquerda(GameContainer container, int delta, Direcao direcaoAnterior){
-        
+        atual = esquerda;
+        atual.update(delta);
+        localizacao.setX((localizacao.getX() - (delta * velocidade)));
+    }
+    
+    //gets e sets
+    public Ponto getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(Ponto localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public float getVelocidade() {
+        return velocidade;
+    }
+
+    public void setVelocidade(float velocidade) {
+        this.velocidade = velocidade;
     }
     
 }

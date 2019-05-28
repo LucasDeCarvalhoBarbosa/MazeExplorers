@@ -11,21 +11,13 @@ import org.newdawn.slick.tiled.TiledMap;
  */
 public class Modelos {
     
-    private static final String MAPA_3 = "assets/Labirintos/Modelo3/Mapa.tmx";
+    private static final String MAPA_3 = "assets/Labirintos/Modelo0/Mapa.tmx";
     
     public static LabirintoVisual geraLabirinto(int labirintoEscolhido) throws SlickException{
         No[][] espaco;
         switch(labirintoEscolhido){
+            
             case 0:
-                return geraLabirinto(3);
-                
-            case 1:
-                return geraLabirinto(3);
-                
-            case 2:
-                return geraLabirinto(3);
-                
-            case 3:
                 espaco = new No[20][20];
                 espaco[0][0] = new No(0, 0, false);
                 espaco[0][1] = new No(0, 1, false);
@@ -429,13 +421,12 @@ public class Modelos {
                 espaco[19][19] = new No(19, 19, false);
                 
                 LabirintoVisual visual = new LabirintoVisual();
-                visual.labirinto = new Labirinto(espaco, new No(0, 16), new No(0, 1));
-                visual.mapa = new TiledMap(MAPA_3);
-                visual.tamanhoTiles = 32;
+                No inicio = new No(16, 0);
+                No objetivo = new No(1, 0);
+                visual.setLabirinto(new Labirinto(espaco, inicio, objetivo));
+                visual.setMapa(new TiledMap(MAPA_3));
+                visual.setTamanhoTiles(32);
                 return visual;
-                
-            case 4:
-                return geraLabirinto(3);
                 
             default:
                 return geraLabirinto(0);
