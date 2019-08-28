@@ -29,6 +29,13 @@ public class Caminho {
         this.nosPorLinha = nosPorLinha;
     }
     
+    /**
+     * Retorna true se o no informado já foi percorrido no Caminho, e do 
+     * contrário, retorna false.
+     * 
+     * @param no o nó que será testado
+     * @return true se o caminho tiver este nó e do contrário, retorna false.
+     */
     public boolean jaPassou(No no){
         /*if(no.equals(caminho.get(caminho.size()-1))){
             return false;//se for o último elemento, não conta 
@@ -40,30 +47,74 @@ public class Caminho {
         return false;
     }
     
+    /**
+     * Adiciona o No passado por parâmtro no Caminho.
+     * 
+     * @param no o nó que será adicionado ao Caminho.
+     */
     public void adiciona(No no){
         this.caminho.push(no);
     }
     
+    /**
+     * Remove o No que está no topo da pilha do Caminho, ou seja, o último No 
+     * que foi adiciona ao Caminho.
+     * 
+     * @return o No removido do Caminho.
+     * @throws EmptyStackException Se o Caminho estiver vazio será lançada uma 
+     * exceção
+     */
     public No removeTopo()throws EmptyStackException{
         return caminho.pop();
     }
     
+    /**
+     * Retorna o No que está no topo do da pilha do Caminho, ou seja o último No
+     * que foi adiicionado.
+     * 
+     * @return o No do topo
+     * @throws EmptyStackException 
+     */
     public No olhaTopo()throws EmptyStackException{
         return caminho.peek();
     }
     
+    /**
+     * Retorna o penúltimo No do caminho, ou seja, o No que foi adicionao antes 
+     * do último No que foi adionado.
+     * 
+     * @return o penúltimo No do caminho.
+     */
     public No penultimo(){
         return caminho.get(tamanho()-2);
     }
     
+    /**
+     * Retorna true se o caminho estiver vaizio, ou seja, não tiver nenhum No.
+     * 
+     * @return true se estiver vazio e do contrário, retorna false.
+     */
     public boolean isVazio(){
         return caminho.isEmpty();
     }
     
+    /**
+     * Retorna o tamanho do caminho, ou seja, quantos Nos o caminho possui.
+     * 
+     * @return o tamanho do Caminho.
+     */
     public int tamanho(){
         return caminho.size();
     }
     
+    /**
+     * Retorna true se um No já foi excluído do Caminho e do caontrário, 
+     * retorna false.
+     * 
+     * @param no o No que deverá ser verificado se foi excluído.
+     * @return true se o No já foi excluido pelo caminho e, do contrário, 
+     * retorna false
+     */
     public boolean isNoExcluido(No no){
         boolean noExcluido = false;
         for(int i=0;i<nosExcluidos.size();i++){
@@ -72,15 +123,32 @@ public class Caminho {
         return noExcluido;
     }
     
+    /**
+     * Adiciona um nó para a lista de Nos que foram excluídos do Caminho.
+     * 
+     * @param no o No que será adicionado a lista de Nos excluídos.
+     */
     public void adicionaNoExcluido(No no){
         if(!nosExcluidos.contains(no))
             nosExcluidos.add(no);
     }
     
+    /**
+     * Retorna a quantidaed de Nos excluídos, ou seja, quantos Nos possui a 
+     * lista de Nos excluídos.
+     * 
+     * @return a quantidade de Nos excluídos
+     */
     public int quantidadeNosExcluidos(){
         return nosExcluidos.size();
     }
     
+    /**
+     * Reporesentação customizada do Caminho em uma String substituindo o 
+     * método de java.lang.Object.
+     * 
+     * @return a String que erpresenta Caminho
+     */
     @Override
     public String toString(){
         String s = "";
