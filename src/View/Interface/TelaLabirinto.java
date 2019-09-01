@@ -1,9 +1,10 @@
 package View.Interface;
 
+import Control.Constantes;
+import Control.Traducao;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
-import de.lessvoid.nifty.slick2d.NiftyBasicGameState;
 import de.lessvoid.nifty.slick2d.NiftyOverlayGameState;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -18,6 +19,8 @@ public class TelaLabirinto extends NiftyOverlayGameState implements ScreenContro
     
     private Nifty nifty;
     private Screen screen;
+    
+    private Traducao traducao;
     
     private boolean rodando;
     
@@ -52,7 +55,7 @@ public class TelaLabirinto extends NiftyOverlayGameState implements ScreenContro
 
     @Override
     public int getID() {
-        return Constantes.idTelaLabirinto;
+        return Constantes.ID_TELA_LABIRINTO;
     }
 
     @Override
@@ -159,6 +162,19 @@ public class TelaLabirinto extends NiftyOverlayGameState implements ScreenContro
     //Métodos de interação
     public void voltar(){//temporário
         nifty.gotoScreen("start");
+    }
+    
+    public String traduz(String key){
+        return Traducao.traduz(key);
+    }
+    
+    //gets e sets
+    public Traducao getTraducao() {
+        return traducao;
+    }
+
+    public void setTraducao(Traducao traducao) {
+        this.traducao = traducao;
     }
     
 }

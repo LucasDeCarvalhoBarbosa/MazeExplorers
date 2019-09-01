@@ -3,7 +3,7 @@
 	<useStyles filename="nifty-default-styles.xml"/>
     <useControls filename="nifty-default-controls.xml"/>
 	
-	<screen id="ExplicacaoBuscaEmLargura" controller="View.Interface.TelaLabirinto">
+	<screen id="ExplicacaoBuscaEmLargura" controller="View.Interface.TelaControlaMenusSimples">
 		<layer id="camada" childLayout="vertical">
 			<panel id="panel" width="100%" height="100%" aligin="center"  childLayout="vertical">
 			<control name="label" text="Em breve!" font="assets/Interface/Fonts/16/Xirod.fnt" width="100%" height="5%"/>
