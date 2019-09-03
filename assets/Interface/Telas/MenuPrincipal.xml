@@ -6,7 +6,7 @@
 	<useStyles filename="nifty-default-styles.xml"/>
     <useControls filename="nifty-default-controls.xml"/>
 	
-	<screen id="start" controller="View.Interface.MenuPrincipal">
+	<screen id="start" controller="View.Interface.TelaControlaMenusSimples">
 		<layer id="fundo" childLayout="center"><!-- backgroundColor="#FFFFFF" -->
 			<image filename="assets/Interface/fundo.jpg"></image>
 		</layer>
@@ -15,7 +15,7 @@
 				<control name="label" text="Maze Explorers" font="assets/Interface/Fonts/36/Xirod.fnt" width="100%" heigth="100%"/><!-- heigth="100" -->
 			</panel>
 			<panel id="explorar" width="35%" height="15%" align="center" childLayout="center" ><!-- backgroundColor="#FE2E2E" -->
-				<control name="button" label="Explorar" id="botaoExplorar" align="center" valign="center" width="70%" height="70%" visibleToMouse="true" >
+				<control name="button" label="${CALL.traduz(mp.explorar)}" id="botaoExplorar" align="center" valign="center" width="70%" height="70%" visibleToMouse="true" >
 					<interact onClick="proximaTela(escolherTecnicas)"/>
 					<effect>
 						<onStartScreen name="move" mode="in" direction="left" length="300" startDelay="0" inherit="false"/>
@@ -26,7 +26,7 @@
 				</control>
 			</panel>
 			<panel id="configuracoes" width="35%" height="15%" align="center" childLayout="center" ><!-- backgroundColor="#2E2EFE" -->
-				<control name="button" label="Configuracoes" id="botaoConfiguracoes" align="center" valign="center" width="70%" height="70%" visibleToMouse="true">
+				<control name="button" label="${CALL.traduz(mp.configuracoes)}" id="botaoConfiguracoes" align="center" valign="center" width="70%" height="70%" visibleToMouse="true">
 					<effect>
 						<onStartScreen name="move" mode="in" direction="left" length="300" startDelay="200" inherit="false"/>
 						<onStartScreen name="playSound" sound="entrando" startDelay="200"/>
@@ -36,7 +36,7 @@
 				</control>
 			</panel>
 			<panel id="creditos" width="35%" height="15%" align="center" childLayout="center" ><!-- backgroundColor="#00FF00" -->
-				<control name="button" label="Créditos" id="botaoCreditos" align="center" valign="center" width="70%" height="70%" visibleToMouse="true">
+				<control name="button" label="${CALL.traduz(mp.creditos)}" id="botaoCreditos" align="center" valign="center" width="70%" height="70%" visibleToMouse="true">
 					<interact onClick="proximaTela(creditos)"/>
 					<effect>
 						<onStartScreen name="move" mode="in" direction="left" length="300" startDelay="400" inherit="false"/>
@@ -47,7 +47,7 @@
 				</control>
 			</panel>
 			<panel id="sair" width="35%" height="15%" align="center" childLayout="center" ><!-- backgroundColor="#FFFF00" -->
-				<control name="button" label="Sair" id="botaoSair" align="center" valign="center" width="70%" height="70%" visibleToMouse="true" >
+				<control name="button" label="${CALL.traduz(mp.sair)}" id="botaoSair" align="center" valign="center" width="70%" height="70%" visibleToMouse="true" >
 					<interact onClick="sair()"/>
 					<effect>
 						<onStartScreen name="move" mode="in" direction="left" length="300" startDelay="600" inherit="false"/>

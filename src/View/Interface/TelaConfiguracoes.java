@@ -1,5 +1,7 @@
 package View.Interface;
 
+import Control.Constantes;
+import Control.Traducao;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
@@ -10,25 +12,26 @@ import org.newdawn.slick.state.StateBasedGame;
  *
  * @author Lucas Barbosa
  */
-public class Creditos extends NiftyBasicGameState implements ScreenController{
+public class TelaConfiguracoes extends NiftyBasicGameState implements ScreenController{
     
     private Nifty nifty;
     private Screen screen;
     
-//    public Creditos(Nifty nifty){
-//        this.nifty = nifty;
-//    }
+    private Traducao traducao;
+    
     
     @Override
     protected void prepareNifty(Nifty nifty, StateBasedGame sbg) {
-        Constantes.carregarNifty(nifty);
-    }
-    
-    @Override
-    public int getID() {
-        return Constantes.idCreditos;
+        
     }
 
+    //De BasicGameState
+    @Override
+    public int getID() {
+        return Constantes.ID_CONFIGURACOES;
+    }
+
+    //De ScreenController
     @Override
     public void bind(Nifty nifty, Screen screen) {
         this.nifty = nifty;
@@ -37,15 +40,33 @@ public class Creditos extends NiftyBasicGameState implements ScreenController{
 
     @Override
     public void onStartScreen() {
+        
     }
 
     @Override
     public void onEndScreen() {
+        
     }
     
+    //Métodos internos
+
+    
     //Métodos de interação
-    public void voltar(){
-        nifty.gotoScreen("start");
+//    public void proximaTela(String proximaTela){//deve salvar as alterações e resetar as outras telas
+//        nifty.gotoScreen(proximaTela);
+//    }
+    
+    public String traduz(String key){
+        return Traducao.traduz(key);
+    }
+    
+    //gets e sets
+    public Traducao getTraducao() {
+        return traducao;
+    }
+
+    public void setTraducao(Traducao traducao) {
+        this.traducao = traducao;
     }
     
 }

@@ -1,5 +1,7 @@
 package View.Interface;
 
+import Control.Constantes;
+import Control.Traducao;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
@@ -12,19 +14,22 @@ import org.newdawn.slick.state.StateBasedGame;
  *
  * @author Lucas Barbosa
  */
-public class EscolherTecnicas extends NiftyBasicGameState implements ScreenController{
+public class TelaEscolherTecnicas extends NiftyBasicGameState implements ScreenController{
     
     private Nifty nifty;
     private Screen screen;
     
+    private Traducao traducao;
+    
+    
     @Override
     protected void prepareNifty(Nifty nifty, StateBasedGame sbg) {
-        Constantes.carregarNifty(nifty);
+        
     }
     
     @Override
     public int getID() {
-        return Constantes.idEscolherTecnicas;
+        return Constantes.ID_ESCOLHER_TECNICAS;
     }
     
     @Override
@@ -66,6 +71,19 @@ public class EscolherTecnicas extends NiftyBasicGameState implements ScreenContr
     //Métodos de interação
     public void proximaTela(String proximaTela){
         nifty.gotoScreen(proximaTela);
+    }
+    
+    public String traduz(String key){
+        return Traducao.traduz(key);
+    }
+    
+    //gets e sets
+    public Traducao getTraducao() {
+        return traducao;
+    }
+
+    public void setTraducao(Traducao traducao) {
+        this.traducao = traducao;
     }
     
 }
