@@ -6,24 +6,34 @@ package Biblioteca.Direcoes;
  */
 public abstract class Direcao {
     
-//    public static final String DIRECAO_CIMA = "cima";
-//    public static final String DIRECAO_DIREITA = "direita";
-//    public static final String DIRECAO_BAIXO = "baixo";
-//    public static final String DIRECAO_ESQUERDA = "esquerda";
-//    
-//    private String direcao;
-//    
-//    public Direcao(String direcao){
-//        this.direcao = direcao;
-//    }
-//    
-//    public boolean equals(String s){
-//        return direcao.equalsIgnoreCase(s);
-//    }
-//    
-//    @Override
-//    public String toString(){
-//        return direcao;
-//    }
+    public Direcao direcaoInversa(){
+        if(this instanceof DirecaoCima)
+            return new DirecaoBaixo();
+        
+        if(this instanceof DirecaoCimaDireita)
+            return new DirecaoBaixoEsquerda();
+        
+        if(this instanceof DirecaoDireita)
+            return new DirecaoEsquerda();
+        
+        if(this instanceof DirecaoBaixoDireita)
+            return new DirecaoCimaEsquerda();
+        
+        if(this instanceof DirecaoBaixo)
+            return new DirecaoCima();
+        
+        if(this instanceof DirecaoBaixoEsquerda)
+            return new DirecaoCimaDireita();
+        
+        if(this instanceof DirecaoEsquerda)
+            return new DirecaoDireita();
+        
+        //só pode ser então uma DirecaoCimaEsquerda e a sua inversa é:
+       return new DirecaoBaixoDireita();
+    }
+    
+    public abstract boolean direcaoOposta(Direcao direcao);
+    
+    public abstract boolean direcaoQuaseOposta(Direcao direcao);
     
 }

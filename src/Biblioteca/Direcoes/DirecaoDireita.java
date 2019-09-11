@@ -11,4 +11,16 @@ public class DirecaoDireita extends Direcao{
         return "[Direita]";
     }
     
+    @Override
+    public boolean direcaoOposta(Direcao direcao) {
+        return (direcao instanceof DirecaoEsquerda);
+    }
+
+    @Override
+    public boolean direcaoQuaseOposta(Direcao direcao) {
+        return ((direcao instanceof DirecaoEsquerda) || 
+                (direcao instanceof DirecaoCimaEsquerda) ||
+                (direcao instanceof DirecaoBaixoEsquerda));
+    }
+    
 }

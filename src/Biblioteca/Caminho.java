@@ -12,7 +12,6 @@ import java.util.Stack;
 public class Caminho {
     
     private Stack<No> caminho;
-    
     private List<No> nosExcluidos;
     
     private int nosPorLinha;
@@ -23,12 +22,6 @@ public class Caminho {
         nosPorLinha = 10;
     }
     
-    public Caminho(int nosPorLinha){
-        this.caminho = new Stack<>();
-        nosExcluidos = new ArrayList<>();
-        this.nosPorLinha = nosPorLinha;
-    }
-    
     /**
      * Retorna true se o no informado já foi percorrido no Caminho, e do 
      * contrário, retorna false.
@@ -36,7 +29,7 @@ public class Caminho {
      * @param no o nó que será testado
      * @return true se o caminho tiver este nó e do contrário, retorna false.
      */
-    public boolean jaPassou(No no){
+    public boolean possui(No no){
         /*if(no.equals(caminho.get(caminho.size()-1))){
             return false;//se for o último elemento, não conta 
         }*/
@@ -44,6 +37,7 @@ public class Caminho {
             if(caminho.get(i).equals(no))
                 return true;
         }
+        
         return false;
     }
     
@@ -118,8 +112,10 @@ public class Caminho {
     public boolean isNoExcluido(No no){
         boolean noExcluido = false;
         for(int i=0;i<nosExcluidos.size();i++){
-            noExcluido = no.equals(nosExcluidos.get(i));
+            if(no.equals(nosExcluidos.get(i)))
+                return true;
         }
+        
         return noExcluido;
     }
     
@@ -144,6 +140,25 @@ public class Caminho {
     }
     
     /**
+     * Retorna o No da lista de nós excluídos na posição informada.
+     * 
+     * @param i a posição do No que se deseja obter.
+     * @return o No na posição informada.
+     */
+    public No getNoExcluido(int i){
+        return nosExcluidos.get(i);
+    }
+    
+    /**
+     * Coloca o No passado na posição infirmada na lista de nós excluídos.
+     * @param i a posição que o nó deve ser colocado
+     * @param no o nó que se deseja colocar na lista de nós excluídos.
+     */
+    public void setNoExcluido(int i, No no){
+        nosExcluidos.set(i, no);
+    }
+    
+    /**
      * Reporesentação customizada do Caminho em uma String substituindo o 
      * método de java.lang.Object.
      * 
@@ -160,7 +175,7 @@ public class Caminho {
             if(!(i==caminho.size()-1)){//se não for o último
                 s += " -> ";
             }
-            if(nosLinhaAtual>=nosPorLinha){
+            if(nosLinhaAtual>=nosPorLinha){//se for o último
                 s += "\n";
                 nosLinhaAtual = 0;
             }
