@@ -9,7 +9,6 @@ import Biblioteca.Direcoes.DirecaoBaixoDireita;
 import Biblioteca.Direcoes.DirecaoBaixoEsquerda;
 import Biblioteca.Direcoes.DirecaoCimaDireita;
 import Biblioteca.Direcoes.DirecaoCimaEsquerda;
-import Biblioteca.Excecoes.HeuristicaNaoCalculadaException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +16,7 @@ import java.util.List;
  *
  * @author Lucas Barbosa
  */
-public class No implements Comparable{
+public class No {
     
     private boolean livre;
     
@@ -25,6 +24,7 @@ public class No implements Comparable{
     private int coluna;
     
     private double heuristica;
+    private double custoCaminho;
     
     /**
      * Gera um nó com apenas linha e coluna, portanto seu atributo livre fica 
@@ -227,22 +227,6 @@ public class No implements Comparable{
         return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
     }
     
-    @Override
-    public int compareTo(Object t) throws HeuristicaNaoCalculadaException{
-        No no = (No) t;
-        if((this.heuristica<0)||(no.getHeuristica()<0)){
-            throw new HeuristicaNaoCalculadaException();
-        }
-        
-        if(this.heuristica<no.getHeuristica()){
-            return 1;//Se este No for melhor
-        }else if(this.heuristica>no.getHeuristica()){
-            return -1;//Se este No for pior
-        }
-        
-        return 0;//Se forem iguais
-    }
-    
     /**
      * Reporesentação customizada do No em uma String substituindo o 
      * método de java.lang.Object.
@@ -285,6 +269,14 @@ public class No implements Comparable{
 
     public void setHeuristica(double heuristica) {
         this.heuristica = heuristica;
+    }
+
+    public double getCustoCaminho() {
+        return custoCaminho;
+    }
+
+    public void setCustoCaminho(double custoCaminho) {
+        this.custoCaminho = custoCaminho;
     }
     
 }

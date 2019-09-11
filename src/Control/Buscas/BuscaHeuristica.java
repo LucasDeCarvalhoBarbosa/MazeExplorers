@@ -1,5 +1,6 @@
 package Control.Buscas;
 
+import Biblioteca.Excecoes.HeuristicaNaoCalculadaException;
 import Biblioteca.Labirinto;
 import Biblioteca.No;
 import java.util.List;
@@ -24,14 +25,8 @@ public abstract class BuscaHeuristica extends Busca {
         }
     }
     
-    protected No melhorNo(List<No> nos){
-        No melhor = nos.get(0);
-        for(int i=0;i<nos.size();i++){
-            if(nos.get(i).compareTo(melhor)>0)
-                melhor = nos.get(i);
-        }
-        
-        return melhor;
-    }
+    public abstract No melhorNo(List<No> nos);
+    
+    public abstract int comparacao(No no1, No no2) throws HeuristicaNaoCalculadaException;
     
 }

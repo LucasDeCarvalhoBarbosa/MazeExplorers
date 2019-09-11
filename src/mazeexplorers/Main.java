@@ -9,6 +9,7 @@ import Biblioteca.Direcoes.DirecaoEsquerda;
 import Biblioteca.Labirinto;
 import Biblioteca.No;
 import Control.Acao;
+import Control.Buscas.BuscaAStar;
 import Control.Buscas.BuscaEmLargura;
 import Control.Buscas.BuscaEmProfundidade;
 import Control.Buscas.BuscaGulosa;
@@ -56,146 +57,31 @@ public class Main extends NiftyStateBasedGame{
 //        }
 
 
-//        int[][] matriz = {new int[]{0, 0, 0, 0, 0, 0, 0, 0},
-//                          new int[]{1, 0, 0, 0, 1, 1, 1, 1},
-//                          new int[]{0, 1, 1, 1, 1, 0, 0, 0},
-//                          new int[]{0, 1, 1, 0, 1, 1, 1, 0},
-//                          new int[]{0, 1, 0, 1, 0, 1, 1, 0},
-//                          new int[]{0, 1, 0, 0, 1, 0, 0, 0},
-//                          new int[]{0, 1, 1, 1, 1, 1, 0, 0},
-//                          new int[]{0, 0, 0, 0, 0, 0, 1, 0},
-//        };
-//        
-//        No inicio = new No(1, 0);
-//        No objetivo = new No(7, 6);
-//        Labirinto labirinto = new Labirinto(matriz, inicio, objetivo);
-//        System.out.println(labirinto);
-//        
-//        BuscaEmLargura busca = new BuscaEmLargura(labirinto);
-//        Caminho caminho = busca.buscar(new Acao(){
-//            @Override
-//            public void acao(No no, Direcao direcao) {
-//                System.out.println(no+" "+direcao);
-//            }
-//        });
-//        
-//        System.out.println("\n\n\n"+caminho);
-
-        Main isto = new Main("");
-        isto.novosTestes();
-        
-    }
-    
-    public void novosTestes(){
-        int[][] matriz = {new int[]{1, 1, 1, 1, 1, 1, 1},
-                          new int[]{1, 1, 1, 1, 1, 1, 1},
-                          new int[]{1, 1, 1, 1, 1, 1, 1},
-                          new int[]{1, 1, 1, 1, 1, 1, 1},
-                          new int[]{1, 1, 1, 1, 1, 1, 1},
-                          new int[]{1, 1, 1, 1, 1, 1, 1},
-                          new int[]{1, 1, 1, 1, 1, 1, 1},
+        int[][] matriz = {new int[]{0, 0, 0, 0, 0, 0, 0, 0},
+                          new int[]{1, 0, 0, 0, 1, 1, 1, 1},
+                          new int[]{0, 1, 1, 1, 1, 0, 0, 0},
+                          new int[]{0, 1, 1, 0, 1, 1, 1, 0},
+                          new int[]{0, 1, 0, 1, 0, 1, 1, 0},
+                          new int[]{0, 1, 0, 0, 1, 0, 0, 0},
+                          new int[]{0, 1, 1, 1, 1, 1, 0, 0},
+                          new int[]{0, 0, 0, 0, 0, 0, 1, 0},
         };
         
-        No inicio = new No(3, 3);
-        No objetivo = new No(6, 6);
+        No inicio = new No(1, 0);
+        No objetivo = new No(7, 6);
         Labirinto labirinto = new Labirinto(matriz, inicio, objetivo);
         System.out.println(labirinto);
         
-        Caminho caminho = new Caminho();
-        
-        Nivel nivel1 = new Nivel(inicio.getVizinhos(labirinto.getEspaco(), caminho));
-        nivel1.labirinto = labirinto;
-        System.out.println("Nível 1 tamanho == "+nivel1.tamanho());
-        System.out.println("nível 1:\n"+nivel1);
-        
-        Nivel nivel2 = nivel1.geraProximoNivel(caminho);
-        System.out.println("Nível 2 tamanho == "+nivel2.tamanho());
-        System.out.println("nível 2:\n"+nivel2);
-        
-        Nivel nivel3 = nivel2.geraProximoNivel(caminho);
-        System.out.println("Nível 3 tamanho == "+nivel3.tamanho());
-        System.out.println("nível 3:\n"+nivel3);
-    }
-    
-    //apagar
-    public class Nivel {
-        
-        private List<No> nos;
-        public Labirinto labirinto;//apagar
-        
-        public Nivel(List<No> nos){
-            this.nos = nos;
-        }
-        
-        /**
-         * Gera o próximo Nivel a partir deste.
-         * 
-         * @param caminho o caminho que está percorrendo.
-         * @return o próximo nível.
-         */
-        public Nivel geraProximoNivel(Caminho caminho){
-            List<No> lista = new ArrayList<>();
-            
-            for(int i=0;i<nos.size();i++){
-                
-                List<No> vizinhos = nos.get(i).getVizinhos(labirinto.getEspaco(), caminho);
-                for(int j=0;j<vizinhos.size();j++){
-                    //System.out.println("vizinho #"+i+" "+vizinhos.get(j));
-                    if((!lista.contains(vizinhos.get(j))) && (!nos.contains(vizinhos.get(j))))
-                        lista.add(vizinhos.get(j));
-                }
-
+        BuscaEmLargura busca = new BuscaEmLargura(labirinto);//falta arrumar a em largura
+        Caminho caminho = busca.buscar(new Acao(){
+            @Override
+            public void acao(No no, Direcao direcao) {
+                System.out.println(no+" "+direcao);
             }
-            
-            Nivel proximoNivel = new Nivel(lista);
-            proximoNivel.labirinto = labirinto;
-            return proximoNivel;
-        }
+        });
         
-        /**
-         * Retorna No que está na posição informada.
-         * 
-         * @param i a posição que deseja obter o No.
-         * @return o No que está na possição informada.
-         */
-        public No get(int i){
-            return nos.get(i);
-        }
-        
-        /**
-         * A quantidade de nós (No) que o Nivel possui.
-         * 
-         * @return o tamanho do nível.
-         */
-        public int tamanho(){
-            return nos.size();
-        }
-        
-        /**
-         * Representação do nível em X e O, onde:<br>
-         * X: um No que pertence ao Nivel.<br>
-         * O: um No que <b>não</b> pertence ao Nivel.
-         * 
-         * @return 
-         */
-        @Override
-        public String toString(){
-            String s = "";
-            for(int i=0;i<labirinto.getEspaco().length;i++){
-                for(int j=0;j<labirinto.getEspaco()[i].length;j++){
-                    
-                    if(nos.contains(labirinto.getEspaco()[i][j]))
-                        s += "X  ";
-                    else
-                        s += "O  ";
-                    
-                }
-                s += "\n";
-            }
-            
-            return s;
-        }
-        
+        System.out.println("\n\n\n"+caminho);
+        System.out.println(labirinto);
     }
     
     @Override
