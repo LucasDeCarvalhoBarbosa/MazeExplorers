@@ -72,62 +72,79 @@ public class No implements Comparable{
         
         if(temEspacoCima){
             No no = espaco[linha-1][coluna];
-            if(no.isLivre())
-                if(!caminho.jaPassou(no)&&(!caminho.isNoExcluido(no)))
-                    vizinhos.add(no);
+            if(isValido(no, caminho))
+                vizinhos.add(no);
         }
         
         if((temEspacoCima)&&(temEspacoDireita)){
             No no = espaco[linha-1][coluna+1];
-            if(no.isLivre())
-                if(!caminho.jaPassou(no)&&(!caminho.isNoExcluido(no)))
-                    vizinhos.add(no);
+            if(isValido(no, caminho))
+                vizinhos.add(no);
         }
         
         if(temEspacoDireita){
             No no = espaco[linha][coluna+1];
-            if(no.isLivre())
-                if((!caminho.jaPassou(no))&&(!caminho.isNoExcluido(no)))
-                    vizinhos.add(no);
+            if(isValido(no, caminho))
+                vizinhos.add(no);
         }
         
         if((temEspacoBaixo)&&(temEspacoDireita)){
             No no = espaco[linha+1][coluna+1];
-            if(no.isLivre()){
-                if(!caminho.jaPassou(no)&&(!caminho.isNoExcluido(no)))
-                    vizinhos.add(no);
-            }
+            if(isValido(no, caminho))
+                vizinhos.add(no);
         }
         
         if(temEspacoBaixo){
             No no = espaco[linha+1][coluna];
-            if(no.isLivre())
-                if(!caminho.jaPassou(no)&&(!caminho.isNoExcluido(no)))
-                    vizinhos.add(no);
+            if(isValido(no, caminho))
+                vizinhos.add(no);
         }
         
         if((temEspacoBaixo)&&(temEspacoEsquerda)){
             No no = espaco[linha+1][coluna-1];
-            if(no.isLivre())
-                if(!caminho.jaPassou(no)&&(!caminho.isNoExcluido(no)))
-                    vizinhos.add(no);
+            if(isValido(no, caminho))
+                vizinhos.add(no);
         }
         
         if(temEspacoEsquerda){
             No no = espaco[linha][coluna-1];
-            if(no.isLivre())
-                if(!caminho.jaPassou(no)&&(!caminho.isNoExcluido(no)))
-                    vizinhos.add(no);
+            if(isValido(no, caminho))
+                vizinhos.add(no);
         }
         
         if((temEspacoCima)&&(temEspacoEsquerda)){
             No no = espaco[linha-1][coluna-1];
-            if(no.isLivre())
-                if(!caminho.jaPassou(no)&&(!caminho.isNoExcluido(no)))
-                    vizinhos.add(no);
+            if(isValido(no, caminho))
+                vizinhos.add(no);
         }
         
         return vizinhos;
+    }
+    
+    private boolean isValido(No no, Caminho caminho){
+//        System.out.println("\n"+no);
+//        System.out.println("no.isLivre() == "+(no.isLivre()));
+//        System.out.println("!caminho.jaPassou(no) == "+(!caminho.possui(no)));
+//        System.out.println("(!caminho.isNoExcluido(no)) == "+(!caminho.isNoExcluido(no)));
+//        System.out.println("Conclusão: ");
+//        if((no.isLivre()) && (!caminho.possui(no)) && (!caminho.isNoExcluido(no))){
+//            System.out.println("Válido");
+//        }else System.out.println("Inválido");
+        
+        return ((no.isLivre()) && (!caminho.possui(no)) && (!caminho.isNoExcluido(no)));
+    }
+    
+    public List<No> getVizinhosOpostos(No[][] espaco, Caminho caminho,No no, Direcao direcao){
+        List<No> opostos = new ArrayList<>();
+        List<No> vizinhos = getVizinhos(espaco, caminho);
+        for(int i=0;i<vizinhos.size();i++){
+            if((vizinhos.get(i).direcaoEmRelacao(no).direcaoOposta(direcao)) || 
+               (vizinhos.get(i).direcaoEmRelacao(no).direcaoQuaseOposta(direcao))){
+                opostos.add(vizinhos.get(i));
+            }
+        }
+        
+        return opostos;
     }
     
     public Direcao direcaoEmRelacao(No no){

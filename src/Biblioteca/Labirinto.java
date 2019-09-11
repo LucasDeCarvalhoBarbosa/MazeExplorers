@@ -1,5 +1,10 @@
 package Biblioteca;
 
+import Biblioteca.Direcoes.Direcao;
+import Biblioteca.Direcoes.DirecaoBaixo;
+import Biblioteca.Direcoes.DirecaoCima;
+import Biblioteca.Direcoes.DirecaoDireita;
+import Biblioteca.Direcoes.DirecaoEsquerda;
 import Biblioteca.Excecoes.InicioInvalidoException;
 import Biblioteca.Excecoes.ObjetivoInvalidoException;
 import Biblioteca.No;
@@ -14,21 +19,6 @@ public class Labirinto {
     private No[][] espaco;
     private No inicio;
     private No objetivo;
-    
-    public Labirinto(No[][] espaco, No inicio, No objetivo) throws InicioInvalidoException, ObjetivoInvalidoException{
-        this.espaco = espaco;
-        this.inicio = inicio;
-        this.objetivo = objetivo;
-        
-        if((inicio.getLinha()<0)||(inicio.getLinha()>espaco.length)||
-            (inicio.getColuna()<0)||(inicio.getColuna()>espaco[0].length)){
-            throw new InicioInvalidoException();
-        }
-        if((objetivo.getLinha()<0)||(objetivo.getLinha()>espaco.length)||
-            (objetivo.getColuna()<0)||(objetivo.getColuna()>espaco[0].length)){
-            throw new ObjetivoInvalidoException();
-        }
-    }
     
     /**
      * Com este Construtor, se pode usar uma matriz de int com <b>0s</b> e <b>1s</b> no lugar 
@@ -56,12 +46,12 @@ public class Labirinto {
         this.inicio = inicio;
         this.objetivo = objetivo;
         
-        if((inicio.getLinha()<0)||(inicio.getLinha()>espaco.length)||
-            (inicio.getColuna()<0)||(inicio.getColuna()>espaco[0].length)){
+        if((inicio.getLinha()<0)||(inicio.getLinha()>espaco.length-1)||
+            (inicio.getColuna()<0)||(inicio.getColuna()>espaco[0].length-1)){
             throw new InicioInvalidoException();
         }
-        if((objetivo.getLinha()<0)||(objetivo.getLinha()>espaco.length)||
-            (objetivo.getColuna()<0)||(objetivo.getColuna()>espaco[0].length)){
+        if((objetivo.getLinha()<0)||(objetivo.getLinha()>espaco.length-1)||
+            (objetivo.getColuna()<0)||(objetivo.getColuna()>espaco[0].length-1)){
             throw new ObjetivoInvalidoException();
         }
     }
@@ -121,6 +111,59 @@ public class Labirinto {
     }
     
     /**
+     * Retoena a direção que o personagem deve começar virado.
+     * 
+     * @return A Direcao inicial
+     */
+    public Direcao direcaoInicial(){
+        double[] distancias = new double[4];
+        distancias[0] = inicio.distanciaEuclidiana(new No(0, inicio.getColuna()));//cima
+        distancias[1] = inicio.distanciaEuclidiana(new No(espaco.length-1, inicio.getColuna()));//baixo
+        distancias[2] = inicio.distanciaEuclidiana(new No(inicio.getLinha(), 0));//esquerda
+        distancias[3] = inicio.distanciaEuclidiana(new No(inicio.getLinha(), espaco[inicio.getLinha()].length-1));//direita
+        
+        return menorDistancia(distancias);
+    }
+    
+    /**
+     * Retorna a Direcao oposta a que corresponde a menor distancia do vetor passo pelo parâmetro.
+     * Para funcionar corretamente, deve seguir a ordem:<br>
+     * [0] é Cima.
+     * [1] é Baixo.
+     * [2] é Esquerda.
+     * [3] é Direita.
+     * 
+     * @param distancias o vetor que deve conter as distâncias do ónto inicial até o ponto paralelo em 
+     * determinada borda obedescendo a ordem informada acima.
+     * @return a Direcao virada para dentro (inversa) mais poróxima da borda.
+     */
+    private Direcao menorDistancia(double[] distancias){
+        int indiceMenorDistncia = 0;//começa com o primeiro
+        for(int i=1;i<distancias.length;i++){
+            if(distancias[i]<distancias[indiceMenorDistncia])
+                indiceMenorDistncia = i;
+        }
+        
+        switch(indiceMenorDistncia){
+            case 0:
+                return new DirecaoCima().direcaoInversa();
+                
+            case 1:
+                return new DirecaoBaixo().direcaoInversa();
+                
+            case 2:
+                return new DirecaoEsquerda().direcaoInversa();
+                
+            case 3:
+                return new DirecaoDireita().direcaoInversa();
+                
+            default:
+                return new DirecaoCima().direcaoInversa();
+        }
+        
+    }
+    
+    /**
      * Reporesentação customizada do labirinto em uma string substituindo o 
      * método de java.lang.Object.
      * O B é begin, ou início.
@@ -137,18 +180,18 @@ public class Labirinto {
             for(int j=0;j<espaco[i].length;j++){
                 boolean jaEscreveu = false;
                 if(espaco[i][j].equals(inicio)){
-                    labirinto += "B ";//Begin
+                    labirinto += "B  ";//Begin
                     jaEscreveu = true;
                 }
                 if(espaco[i][j].equals(objetivo)){
-                    labirinto += "E ";//End
+                    labirinto += "E  ";//End
                     jaEscreveu = true;
                 }
                 
                 if(jaEscreveu==false)
                 if(espaco[i][j].isLivre()){
-                    labirinto += "1 ";
-                }else labirinto += "0 ";
+                    labirinto += "1  ";
+                }else labirinto += "0  ";
             }
             labirinto += "\n";
         }

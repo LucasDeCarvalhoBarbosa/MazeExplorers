@@ -11,4 +11,14 @@ public class DirecaoNenhuma extends Direcao{
         return "[Nenhuma]";
     }
     
+    @Override
+    public boolean direcaoOposta(Direcao direcao) {
+        return false;
+    }
+
+    @Override
+    public boolean direcaoQuaseOposta(Direcao direcao) {
+        return false;
+    }
+    
 }

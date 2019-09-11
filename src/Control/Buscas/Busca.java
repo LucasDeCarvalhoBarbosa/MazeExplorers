@@ -1,6 +1,7 @@
 package Control.Buscas;
 
 import Biblioteca.Caminho;
+import Biblioteca.Excecoes.CaminhoInexistenteException;
 import Biblioteca.Labirinto;
 import Biblioteca.No;
 import Control.Acao;
@@ -27,7 +28,7 @@ public abstract class Busca {
         objetivo = labirinto.getObjetivo();
     }
     
-    public abstract Caminho buscar(Acao acao);
+    public abstract Caminho buscar(Acao acao) throws CaminhoInexistenteException;
     
     public boolean possui(Collection<No> colecao, No no){
         Iterator iterator = colecao.iterator();

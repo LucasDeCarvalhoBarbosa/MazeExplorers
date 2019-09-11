@@ -56,7 +56,7 @@ public class Traducao {
     private void criaArquivoIdiomaPortugues(){
         dicionario = new Properties();
         dicionario.setProperty("mp.explorar", "Explorar");
-        dicionario.setProperty("mp.configuracoes", "Configuracoes");
+        dicionario.setProperty("mp.configuracoes", "Configurações");
         dicionario.setProperty("mp.creditos", "Créditos");
         dicionario.setProperty("mp.sair", "Sair");
         dicionario.setProperty("et.titulo", "Selecione a(s) técnicas para explorar o labirinto");
@@ -75,11 +75,45 @@ public class Traducao {
     }
     
     private void criaArquivoIdiomaIngles(){
-        System.out.println("Ainda não implementado!");
+        dicionario = new Properties();
+        dicionario.setProperty("mp.explorar", "Explore");
+        dicionario.setProperty("mp.configuracoes", "Settings");
+        dicionario.setProperty("mp.creditos", "Credit");
+        dicionario.setProperty("mp.sair", "Exit");
+        dicionario.setProperty("et.titulo", "Choose techniques to explore the maze");
+        dicionario.setProperty("et.buscaLargura", "Breadth-first search");
+        dicionario.setProperty("et.buscaProfundidade", "Depth-first search");
+        dicionario.setProperty("et.buscaGulosa", "Greedy algorithm");
+        dicionario.setProperty("et.buscaAEstrela", "A*");
+        dicionario.setProperty("et.voltar", "back");
+        dicionario.setProperty("et.confirmar", "confirm");
+        dicionario.setProperty("c.desenvolvedores", "developers");
+        dicionario.setProperty("c.creditosAdicionais", "Additional Credits");
+        dicionario.setProperty("c.nome1", "Charles Gabriel (by the character used)");
+        dicionario.setProperty("c.nome2", "Kjpargeter (by background image)");
+        
+        salvaArquivoIdioma();
     }
     
     private void criaArquivoIdiomaEspanhol(){
-        System.out.println("Ainda não implementado!");
+        dicionario = new Properties();
+        dicionario.setProperty("mp.explorar", "Explorar");
+        dicionario.setProperty("mp.configuracoes", "Configuraciones");
+        dicionario.setProperty("mp.creditos", "Créditos");
+        dicionario.setProperty("mp.sair", "Partir");
+        dicionario.setProperty("et.titulo", "Seleccionar técnicas para explorar el laberinto.");
+        dicionario.setProperty("et.buscaLargura", "Búsqueda en anchura");
+        dicionario.setProperty("et.buscaProfundidade", "Búsqueda de profundidad");
+        dicionario.setProperty("et.buscaGulosa", "Búsqueda codiciosa");
+        dicionario.setProperty("et.buscaAEstrela", "Búsqueda A*");
+        dicionario.setProperty("et.voltar", "Volver");
+        dicionario.setProperty("et.confirmar", "Confirmar");
+        dicionario.setProperty("c.desenvolvedores", "Desarrolladores");
+        dicionario.setProperty("c.creditosAdicionais", "Créditos Adicionales");
+        dicionario.setProperty("c.nome1", "Charles Gabriel (Por el personaje usado)");
+        dicionario.setProperty("c.nome2", "Kjpargeter (por imagen de fondo)");
+        
+        salvaArquivoIdioma();
     }
     
     public void salvaArquivoIdioma(){
