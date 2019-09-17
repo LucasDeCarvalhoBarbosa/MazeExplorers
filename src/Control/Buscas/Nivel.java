@@ -33,15 +33,14 @@ public class Nivel {
     public Nivel geraProximoNivel(Caminho caminho){
         //apagar
         System.out.println("\n\n"+this+"\n");
+        No origem = labirinto.getInicio();
 
         List<No> lista = new ArrayList<>();
 
         for(int i=0;i<nos.size();i++){
 
             List<No> vizinhos = nos.get(i).getVizinhosOpostos(labirinto.getEspaco(),
-                    caminho, nos.get(i), labirinto.getInicio().direcaoEmRelacao(nos.get(i)));
-            
-            vizinhos = ordenaVizinhos(vizinhos);
+                    caminho, nos.get(i), origem.direcaoEmRelacao(nos.get(i)));
             
             for(int j=0;j<vizinhos.size();j++){
                 //System.out.println("vizinho #"+i+" "+vizinhos.get(j));
@@ -54,17 +53,6 @@ public class Nivel {
         Nivel proximoNivel = new Nivel(lista, labirinto);
         //proximoNivel.labirinto = labirinto;
         return proximoNivel;
-    }
-    
-    /**
-     * Ordena a lista para que fiquem em uma ordem adjacente, ou seja, possam ser
-     * visitados sem pular espaços.
-     * 
-     * @param lista
-     * @return 
-     */
-    private List<No> ordenaVizinhos(List<No> lista){
-        return lista;//mudar
     }
 
     /**
@@ -94,12 +82,16 @@ public class Nivel {
     }
     
     /**
-     * Retorna se o niveljá foi verificado completamente usando o método próximo.
+     * Retorna se o nivel já foi verificado completamente usando o método próximo.
      * 
      * @return true se já foram verificados todos os nós e, do contrário, retorna false.
      */
     public boolean completamenteVerificado(){
-        return contador == nos.size();
+        //return contador == nos.size();
+        if(contador==nos.size())
+            return true;
+        
+        return nos.get(contador) == null;
     }
 
     /**

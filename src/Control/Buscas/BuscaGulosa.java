@@ -43,8 +43,8 @@ public class BuscaGulosa extends BuscaHeuristica{
         return caminho;
     }
     
-    //arrumar
-    private No proximoPasso(No noAtual, Caminho caminho){
+    @Override
+    protected No proximoPasso(No noAtual, Caminho caminho){
         List<No> vizinhos = noAtual.getVizinhos(labirinto.getEspaco(), caminho);
         this.atribuiHeuristica(vizinhos);
         
@@ -63,7 +63,7 @@ public class BuscaGulosa extends BuscaHeuristica{
     }
     
     @Override
-    public No melhorNo(List<No> nos){
+    protected No melhorNo(List<No> nos){
         No melhor = nos.get(0);
         for(int i=0;i<nos.size();i++){
             if(comparacao(nos.get(i), melhor)>0)
@@ -74,7 +74,7 @@ public class BuscaGulosa extends BuscaHeuristica{
     }
     
     @Override
-    public int comparacao(No no1, No no2) throws HeuristicaNaoCalculadaException{
+    protected int comparacao(No no1, No no2) throws HeuristicaNaoCalculadaException{
         if((no1.getHeuristica()<0)||(no2.getHeuristica()<0)){//verifica se a heurística foi calculada
             throw new HeuristicaNaoCalculadaException();
         }

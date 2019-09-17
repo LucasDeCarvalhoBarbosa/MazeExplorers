@@ -25,8 +25,8 @@ public abstract class BuscaHeuristica extends Busca {
         }
     }
     
-    public abstract No melhorNo(List<No> nos);
+    protected abstract No melhorNo(List<No> nos);
     
-    public abstract int comparacao(No no1, No no2) throws HeuristicaNaoCalculadaException;
+    protected abstract int comparacao(No no1, No no2) throws HeuristicaNaoCalculadaException;
     
 }

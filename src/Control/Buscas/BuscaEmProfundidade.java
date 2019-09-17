@@ -45,7 +45,8 @@ public class BuscaEmProfundidade extends Busca{
         return caminho;
     }
     
-    private No proximoPasso(No noAtual, Caminho caminho) throws CaminhoInexistenteException{
+    @Override
+    protected No proximoPasso(No noAtual, Caminho caminho) throws CaminhoInexistenteException{
         List<No> vizinhos = noAtual.getVizinhos(labirinto.getEspaco(), caminho);
         if(vizinhos.size()>0){//se tiver pelo menos um vizinho válido para explorar
             return vizinhos.get(0);

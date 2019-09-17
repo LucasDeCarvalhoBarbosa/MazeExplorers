@@ -29,25 +29,57 @@ public class BuscaEmLargura extends Busca {
         Caminho caminho = new Caminho();
         caminho.adiciona(inicio);
         
-        //boolean nivelTodoVerificado = false;
         Nivel nivelAtual = new Nivel(caminho.olhaTopo().getVizinhos(labirinto.getEspaco(), caminho), labirinto);
-        System.out.println("nivel.size() == "+nivelAtual.size()+"---------------------------");
+        
         //O No que eu estou usando no momento é sempre caminho.olhaTopo()
         while(!caminho.olhaTopo().equals(objetivo)){
             
             if(nivelAtual.completamenteVerificado())
                 nivelAtual = nivelAtual.geraProximoNivel(caminho);
             
-            caminho.adiciona(nivelAtual.proximo());
+            No proximo = nivelAtual.proximo();//resolver, aqui nunca pode dar null
+            System.out.println("\n\nproximo: "+proximo+"\n");
+            No proximoPasso = proximoPasso(proximo, caminho);//este pode ser null
             
-            try{
-                executa.executa(caminho.olhaTopo(), caminho.olhaTopo().direcaoEmRelacao(caminho.penultimo()));
-            }catch(IndexOutOfBoundsException e){
-                throw new CaminhoInexistenteException();
+            if(proximoPasso!=null){//se ele é adjacente, executa normalmente
+                caminho.adiciona(proximoPasso);
+                
+                try{
+                    executa.executa(caminho.olhaTopo(), caminho.olhaTopo().direcaoEmRelacao(caminho.penultimo()));
+                }catch(IndexOutOfBoundsException e){
+                    throw new CaminhoInexistenteException();
+                }
+                
+            }else{//se ele não é adjacente, visualmente deve voltar, mas não adicionado no caminho
+                
+                try{
+                    executa.executa(proximo, proximo.direcaoEmRelacao(caminho.olhaTopo()));
+                }catch(IndexOutOfBoundsException e){
+                    throw new CaminhoInexistenteException();
+                }
+                
             }
+            
+            if(nivelAtual.completamenteVerificado())
+                nivelAtual = nivelAtual.geraProximoNivel(caminho);
+            
         }
         
         return caminho;
+    }
+    
+    @Override
+    protected No proximoPasso(No noAtual, Caminho caminho){
+        if(caminho.tamanho()>0){
+            System.out.println("noAtual: "+noAtual);
+            System.out.println("caminho.olhaTopo(): "+caminho.olhaTopo());
+            if(!noAtual.isAdjacente(caminho.olhaTopo())){
+                return null;//se os nós não forem adjacentes, deve retornar.
+            }else
+                return noAtual;
+        }else
+            throw new CaminhoInexistenteException();
+        
     }
     
 }

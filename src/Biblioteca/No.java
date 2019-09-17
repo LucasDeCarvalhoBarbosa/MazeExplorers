@@ -228,6 +228,19 @@ public class No {
     }
     
     /**
+     * retorna true se o nó informado for adjacente, ou seja está diretamente em cima,
+     * baixo, esquerda, direita, ou na diagonal.
+     * 
+     * @param outro o outro No que será feita a verificação.
+     * @return true se forem adjacentes e, do contrário, retorna false.
+     */
+    public boolean isAdjacente(No outro){
+        double maiorDistanciaNosAdjacentes = Math.sqrt(2);
+        System.out.println("distância: "+this.distanciaEuclidiana(outro));
+        return (this.distanciaEuclidiana(outro) <= maiorDistanciaNosAdjacentes);
+    }
+    
+    /**
      * Reporesentação customizada do No em uma String substituindo o 
      * método de java.lang.Object.
      * 

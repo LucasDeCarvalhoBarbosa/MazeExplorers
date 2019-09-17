@@ -82,6 +82,7 @@ public class Main extends NiftyStateBasedGame{
         
         System.out.println("\n\n\n"+caminho);
         System.out.println(labirinto);
+
     }
     
     @Override
