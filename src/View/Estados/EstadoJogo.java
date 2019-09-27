@@ -1,4 +1,4 @@
-package View.Interface;
+package View.Estados;
 
 import Control.Constantes;
 import Control.Traducao;
@@ -6,6 +6,8 @@ import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import de.lessvoid.nifty.slick2d.NiftyOverlayGameState;
+import de.lessvoid.nifty.slick2d.NiftyStateBasedGame;
+import mazeexplorers.Main;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -15,20 +17,22 @@ import org.newdawn.slick.state.StateBasedGame;
  *
  * @author Lucas Barbosa
  */
-public class TelaLabirinto extends NiftyOverlayGameState implements ScreenController{
+public class EstadoJogo extends NiftyOverlayGameState implements ScreenController {
+    
+    private Main aplicacao;
+    private Traducao traducao;
     
     private Nifty nifty;
     private Screen screen;
     
-    private Traducao traducao;
-    
     private boolean rodando;
     
-    public TelaLabirinto(){
+    public EstadoJogo(){
         rodando = true;
     }
     
 
+    //De OverlayGameState
     @Override
     protected void enterState(GameContainer gc, StateBasedGame sbg) {
     }
@@ -51,11 +55,12 @@ public class TelaLabirinto extends NiftyOverlayGameState implements ScreenContro
 
     @Override
     protected void prepareNifty(Nifty nifty, StateBasedGame sbg) {
+        //Constantes.carregarNifty(nifty);
     }
 
     @Override
     public int getID() {
-        return Constantes.ID_TELA_LABIRINTO;
+        return Constantes.ID_LABIRINTO;
     }
 
     @Override
@@ -147,8 +152,11 @@ public class TelaLabirinto extends NiftyOverlayGameState implements ScreenContro
     public void controllerButtonReleased(int controller, int button) {
     }
 
-    @Override
+    //De ScreenController
+   @Override
     public void bind(Nifty nifty, Screen screen) {
+        this.nifty = nifty;
+        this.screen = screen;
     }
 
     @Override
@@ -160,15 +168,22 @@ public class TelaLabirinto extends NiftyOverlayGameState implements ScreenContro
     }
     
     //Métodos de interação
-    public void voltar(){//temporário
-        nifty.gotoScreen("start");
-    }
     
     public String traduz(String key){
         return Traducao.traduz(key);
     }
     
+    
+
     //gets e sets
+    public Main getAplicacao() {
+        return aplicacao;
+    }
+    
+    public void setAplicacao(Main aplicacao){
+        this.aplicacao = aplicacao;
+    }
+
     public Traducao getTraducao() {
         return traducao;
     }

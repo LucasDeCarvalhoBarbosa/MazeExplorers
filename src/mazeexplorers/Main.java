@@ -15,15 +15,15 @@ import Control.Buscas.BuscaEmProfundidade;
 import Control.Buscas.BuscaGulosa;
 import Control.Configuracoes;
 import Control.Traducao;
-import View.Interface.TelaConfiguracoes;
-import View.Interface.TelaControlaMenusSimples;
-import View.Interface.TelaEscolherTecnicas;
-import View.Interface.TelaLabirinto;
+import View.Estados.EstadoJogo;
+import View.Estados.EstadoMenu;
+import View.Estados.Jogo;
 import de.lessvoid.nifty.slick2d.NiftyStateBasedGame;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -37,9 +37,21 @@ public class Main extends NiftyStateBasedGame{
     private static AppGameContainer janela;
     public static Configuracoes configuracoes;
     
-    public Main(String titulo){
+    private static Main unica;
+    
+    private Main(String titulo){
         super(titulo);
     }
+    
+    public static Main getInstance(){
+        if(unica==null){
+            unica = new Main("Maze Explorers");
+        }
+        
+        return unica;
+    }
+    
+    
 
     public static void main(String[] args) throws SlickException {
 //        configuracoes = new Configuracoes();
@@ -51,6 +63,8 @@ public class Main extends NiftyStateBasedGame{
 //            janela = new AppGameContainer(new Main("Maze Explorers"));
 //            janela.setDisplayMode(larguraTela, alturaTela, telaCheia);
 //            janela.setShowFPS(false);//false
+//            
+//            
 //            janela.start();
 //        } catch (SlickException ex) {
 //            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -89,22 +103,23 @@ public class Main extends NiftyStateBasedGame{
     public void initStatesList(GameContainer container) throws SlickException {
         Traducao traducao = new Traducao(configuracoes.getProperty("idioma"));
         
-        TelaControlaMenusSimples menusSimples = new TelaControlaMenusSimples();
-        menusSimples.setTraducao(traducao);//não passo pelo contrutor porque  o xml da tela vai chamar
+        EstadoMenu menu = new EstadoMenu();
+        menu.setAplicacao(this);//não passo pelo construtor porque  o xml da tela vai chamar
+        menu.setTraducao(traducao);
         
-        TelaEscolherTecnicas escolherTecnicas = new TelaEscolherTecnicas();
-        escolherTecnicas.setTraducao(traducao);//não passo pelo contrutor porque  o xml da tela vai chamar
+//        EstadoJogo jogo = new EstadoJogo();
+//        jogo.setTraducao(traducao);//não passo pelo construtor porque  o xml da tela vai chamar
         
-        TelaConfiguracoes telaConfigs = new TelaConfiguracoes();
-        telaConfigs.setTraducao(traducao);//não passo pelo contrutor porque  o xml da tela vai chamar
+        this.addState(menu);
+        //this.addState(jogo);
         
-        TelaLabirinto telaLabirinto = new TelaLabirinto();
-        telaLabirinto.setTraducao(traducao);//não passo pelo contrutor porque  o xml da tela vai chamar
-        
-        this.addState(menusSimples);
-        this.addState(escolherTecnicas);
-        this.addState(telaConfigs);
-        //this.addState(telaLabirinto);
+        Jogo jogo = new Jogo();
+        this.addState(jogo);
+    }
+    
+    public void mudaEstado(int idEstado){
+        this.enterState(idEstado);
+        JOptionPane.showMessageDialog(null, "Total de estados: "+this.getStateCount()+"\nestado atual: "+this.getCurrentStateID());
     }
     
     //É só usar Main.mudaResolucao(); em configurações

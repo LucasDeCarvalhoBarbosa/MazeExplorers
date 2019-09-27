@@ -1,4 +1,4 @@
-package View.Interface;
+package View.Estados;
 
 import Control.Constantes;
 import Control.Traducao;
@@ -6,52 +6,39 @@ import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import de.lessvoid.nifty.slick2d.NiftyBasicGameState;
+import de.lessvoid.nifty.slick2d.NiftyStateBasedGame;
+import javax.swing.JOptionPane;
+import mazeexplorers.Main;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
  *
  * @author Lucas Barbosa
  */
-public class TelaEscolherTecnicas extends NiftyBasicGameState implements ScreenController{
+public class EstadoMenu extends NiftyBasicGameState implements ScreenController{
+
+    private Main aplicacao;
+    private Traducao traducao;
     
     private Nifty nifty;
     private Screen screen;
     
-    private Traducao traducao;
+    private StateBasedGame sbg;
     
-    
+
     @Override
     protected void prepareNifty(Nifty nifty, StateBasedGame sbg) {
-        
+        Constantes.carregarNifty(nifty);
     }
     
+    //De BasicGameState
     @Override
     public int getID() {
-        return Constantes.ID_ESCOLHER_TECNICAS;
+        return Constantes.ID_MENU;
     }
     
-    @Override
-    public void renderGame(GameContainer gc, StateBasedGame sbg, Graphics g){
-        
-    }
-    
-    @Override
-    protected void updateGame(GameContainer gc, StateBasedGame sbg, int i) {
-        
-    }
-    
-    @Override
-    public void enterState(GameContainer gc, StateBasedGame sbg){
-        
-    }
-    
-    @Override
-    public void leaveState(GameContainer gc, StateBasedGame sbg){
-        
-    }
-
+    //De ScreenController
     @Override
     public void bind(Nifty nifty, Screen screen) {
         this.nifty = nifty;
@@ -68,9 +55,26 @@ public class TelaEscolherTecnicas extends NiftyBasicGameState implements ScreenC
         
     }
     
+    @Override
+    protected void updateGame(GameContainer gc, StateBasedGame sbg, int delta){
+        this.sbg = sbg;
+        System.out.println("sbg: "+sbg);
+    }
+    
     //Métodos de interação
+    public void sair(){
+       System.exit(0);
+    }
+    
     public void proximaTela(String proximaTela){
-        nifty.gotoScreen(proximaTela);
+        JOptionPane.showMessageDialog(null, "sbg: "+sbg);
+        JOptionPane.showMessageDialog(null, "nifty: "+nifty);
+        if(proximaTela.equals("TelaLabirinto")){
+            
+            //Main.getInstance().mudaEstado(2);
+            sbg.enterState(2);
+        }else
+            nifty.gotoScreen(proximaTela);
     }
     
     public String traduz(String key){
@@ -78,6 +82,14 @@ public class TelaEscolherTecnicas extends NiftyBasicGameState implements ScreenC
     }
     
     //gets e sets
+    public Main getAplicacao() {
+        return aplicacao;
+    }
+
+    public void setAplicacao(Main aplicacao) {
+        this.aplicacao = aplicacao;
+    }
+
     public Traducao getTraducao() {
         return traducao;
     }
