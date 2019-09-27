@@ -8,7 +8,6 @@ import Control.Acao;
 import Control.ExecutaAcao;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  *
@@ -29,6 +28,8 @@ public abstract class Busca {
     }
     
     public abstract Caminho buscar(Acao acao) throws CaminhoInexistenteException;
+    
+    protected abstract No proximoPasso(No noAtual, Caminho caminho);
     
     public boolean possui(Collection<No> colecao, No no){
         Iterator iterator = colecao.iterator();

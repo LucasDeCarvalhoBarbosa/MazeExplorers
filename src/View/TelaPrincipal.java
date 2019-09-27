@@ -15,7 +15,7 @@ import org.newdawn.slick.SlickException;
  *
  * @author Lucas Barbosa
  */
-public class TelaPrincipal extends BasicGame{
+public class TelaPrincipal extends BasicGame{//apagar esta classe
     
     private LabirintoVisual labirintoVisual;
     private Sprite sprite;

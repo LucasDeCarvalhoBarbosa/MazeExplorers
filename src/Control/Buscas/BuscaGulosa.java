@@ -2,6 +2,7 @@ package Control.Buscas;
 
 import Biblioteca.Caminho;
 import Biblioteca.Excecoes.CaminhoInexistenteException;
+import Biblioteca.Excecoes.HeuristicaNaoCalculadaException;
 import Biblioteca.Labirinto;
 import Biblioteca.No;
 import Control.Acao;
@@ -28,7 +29,7 @@ public class BuscaGulosa extends BuscaHeuristica{
         while(!caminho.olhaTopo().equals(this.objetivo)){
             No proximoPasso = proximoPasso(caminho.olhaTopo(), caminho);
             
-            //verifica se o caminho retornou o próprio nó porque não encontrou nenhum vizinho para explorar
+            //verifica se o caminho retornou null porque não encontrou nenhum vizinho para explorar
             if(proximoPasso!=null)
                 caminho.adiciona(proximoPasso);
             
@@ -41,8 +42,9 @@ public class BuscaGulosa extends BuscaHeuristica{
         
         return caminho;
     }
-    //arrumar
-    private No proximoPasso(No noAtual, Caminho caminho){
+    
+    @Override
+    protected No proximoPasso(No noAtual, Caminho caminho){
         List<No> vizinhos = noAtual.getVizinhos(labirinto.getEspaco(), caminho);
         this.atribuiHeuristica(vizinhos);
         
@@ -58,6 +60,32 @@ public class BuscaGulosa extends BuscaHeuristica{
         }else
             throw new CaminhoInexistenteException();
         
+    }
+    
+    @Override
+    protected No melhorNo(List<No> nos){
+        No melhor = nos.get(0);
+        for(int i=0;i<nos.size();i++){
+            if(comparacao(nos.get(i), melhor)>0)
+                melhor = nos.get(i);
+        }
+        
+        return melhor;
+    }
+    
+    @Override
+    protected int comparacao(No no1, No no2) throws HeuristicaNaoCalculadaException{
+        if((no1.getHeuristica()<0)||(no2.getHeuristica()<0)){//verifica se a heurística foi calculada
+            throw new HeuristicaNaoCalculadaException();
+        }
+        
+        if(no1.getHeuristica()<no2.getHeuristica()){
+            return 1;//Se este No for melhor
+        }else if(no1.getHeuristica()>no2.getHeuristica()){
+            return -1;//Se este No for pior
+        }
+        
+        return 0;//Se forem iguais
     }
     
 }

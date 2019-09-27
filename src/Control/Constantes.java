@@ -9,11 +9,8 @@ import de.lessvoid.nifty.Nifty;
 public class Constantes {
     
     //estados
-    public static final int ID_MENU_PRINCIPAL = 1;
-    public static final int ID_CONTROLA_MENUS_SIMPLES = 2;
-    public static final int ID_CONFIGURACOES = 3;
-    public static final int ID_ESCOLHER_TECNICAS = 4;
-    public static final int ID_TELA_LABIRINTO = 5;
+    public static final int ID_MENU = 1;
+    public static final int ID_LABIRINTO = 2;
     
     public static void carregarNifty(Nifty nifty){
         nifty.fromXml("assets/Interface/Telas/MenuPrincipal.xml", "start");

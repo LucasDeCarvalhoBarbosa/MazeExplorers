@@ -6,7 +6,7 @@
     <useStyles filename="nifty-default-styles.xml"/>
     <useControls filename="nifty-default-controls.xml"/>
 	
-	<screen id="creditos" controller="View.Interface.TelaControlaMenusSimples">
+	<screen id="creditos" controller="View.Estados.EstadoMenu">
 		<layer id="camada" childLayout="vertical">
 			<panel id="nomes" width="100%" height="90%" aligin="center" childLayout="vertical">
 				<control name="label" text="${CALL.traduz(c.desenvolvedores)}" font="assets/Interface/Fonts/36/Xirod.fnt" color="#FF0000" width="100%" height="10%"/>

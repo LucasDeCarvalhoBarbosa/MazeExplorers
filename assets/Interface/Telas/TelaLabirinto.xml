@@ -3,14 +3,8 @@
 	<useStyles filename="nifty-default-styles.xml"/>
     <useControls filename="nifty-default-controls.xml"/>
 	
-	<screen id="TelaLabirinto" controller="View.Interface.TelaLabirinto">
+	<screen id="TelaLabirinto" controller="View.Estados.EstadoJogo">
 		<layer id="camada" childLayout="vertical">
-			<panel id="panel" width="100%" height="100%" aligin="center"  childLayout="vertical">
-			<control name="label" text="Em breve!" font="assets/Interface/Fonts/16/Xirod.fnt" width="100%" height="5%"/>
-			<control name="button" label="voltar" id="botaoVoltar" width="12%" height="10%" visibleToMouse="true">
-				<interact onClick="voltar()"/>
-			</control>
-			</panel>
 		</layer>
 	</screen>
 </nifty>
