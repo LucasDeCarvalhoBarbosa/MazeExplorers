@@ -65,4 +65,5 @@ A licença completa está no arquivo LICENSE, e pode ser acessada [aqui](https:/
 que é usada no projeto para a parte gráfica. A Slick2D é uma biblioteca para jogos em 2D
 na linguagem java, e é baseada na [LWJGL](https://www.lwjgl.org/) (Lightweight Java Game Library).  
 
-- Agradecimentos a Charles Gabriel, pelos sprites usados. Link para o seu blog: <http://cgartsenal.blogspot.com/>
+- Agradecimentos a superagent8 do [gamebanana](https://gamebanana.com/) pelos tiles usados.
+- Agradecimentos também a finalbossblues do [itch.io](https://itch.io/) pelos sprites usados.
