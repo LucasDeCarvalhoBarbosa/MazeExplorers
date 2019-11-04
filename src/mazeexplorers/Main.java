@@ -55,13 +55,13 @@ public class Main extends NiftyStateBasedGame{
 
     public static void main(String[] args) throws SlickException {
 //        configuracoes = new Configuracoes();
-//        int larguraTela = Integer.parseInt(configuracoes.getProperty("larguraTela"));
-//        int alturaTela = Integer.parseInt(configuracoes.getProperty("alturaTela"));
-//        boolean telaCheia = Boolean.parseBoolean(configuracoes.getProperty("telaCheia"));
+//        //int larguraTela = Integer.parseInt(configuracoes.getProperty("larguraTela"));
+//        //int alturaTela = Integer.parseInt(configuracoes.getProperty("alturaTela"));
+//        //boolean telaCheia = Boolean.parseBoolean(configuracoes.getProperty("telaCheia"));
 //        
 //        try{
 //            janela = new AppGameContainer(new Main("Maze Explorers"));
-//            janela.setDisplayMode(larguraTela, alturaTela, telaCheia);
+//            janela.setDisplayMode(1280, 1024, true);
 //            janela.setShowFPS(false);//false
 //            
 //            

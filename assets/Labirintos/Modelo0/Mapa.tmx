@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="2" nextobjectid="1">
- <tileset firstgid="1" source="gramaERochas.tsx"/>
- <layer id="1" name="Camada de Tiles 1" width="20" height="20">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACl2UWZKDMAxEBQGGLZCwhuAE7n/KEVVPZc18dMkIrS3Zh4jkik6xgM7JU/FRzMi7YuVcKHqwYj8qUkWjGBSZYlO8FU/FpAiKVnFDH/j3xG9HXnWVih/kgixdHTM1lpxf1NW5ei//Gt1MjTU5EmrcnbyRKyf2mx7sX44ud+cDnwKfB/lL+qrhpaOeln+BGkbX64b/TP0T/2rkixwVOcznCzrsjBebQ0qMCl2AA4ufOI5bevMcfYhf0ufAdwEvJT4j8kBnc87wMd+TfAH7QI0pXKfo3vSYUNcGL8bXSl85sRtiN24ed4l7YX3a/DYXc6L+BtuV7x3eAjY2Y5uv7ahxEYiZkCOFj4vDHtuVnAmxRnwHfK2vHl3DOcjffW6pocVuIl5GbpuTzaLH7zq/JN5v63eS+CZUEu9U4mY0uL4mYr7hqSXmQYyd3mwmI/9blzOjhsLlnCTu9i7xPejp/4vu4/gbsN2Ik/7jZqUHq89s/cwafG1/7C16uhneJe6q3d8P8RdsF3SVyzXSVyV/35Uv+hXdLPENSSS+MbZTNg97jxJ4OR1/NX7WWyHxDp+Ov4fEe2znVeJ9OqnH9tXyXPIXrPoykkAGAAA=
-  </data>
- </layer>
-</map>
