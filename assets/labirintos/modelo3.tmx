@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="20" height="12" tilewidth="64" tileheight="64" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" source="Tileset.tsx"/>
+ <layer id="1" name="Camada de Tiles 1" width="20" height="12">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACpNiYGCQogJWR2NTA6ObTSyNzW243IeuH5f9uNyETT82O3G5F5vb8fkdX/gSUk9IL66woMR9xPoXmx5S4wGXf3G5gRh5WqRnauY3ACes3/HAAwAA
+  </data>
+ </layer>
+</map>
