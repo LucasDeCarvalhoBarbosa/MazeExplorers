@@ -47,16 +47,6 @@ public class Pausa extends BasicGameState {
         painel = new Container(500, 230, 0, 0);
         gui.add(painel);
         
-        btMenuPrincipal = new Button(Constantes.substituir("pausa.menuPrincipal"));
-        btMenuPrincipal.setFont(Constantes.textoFont());
-        btMenuPrincipal.addAction(new Action(){
-            @Override
-            public void action() {
-                sbg.enterState(Constantes.ID_MENU_PRINCIPAL);
-            }
-        });
-        painel.add(btMenuPrincipal);
-        
         btRetomar = new Button(Constantes.substituir("pausa.retornar"));
         btRetomar.setFont(Constantes.textoFont());
         btRetomar.addAction(new Action(){
@@ -66,6 +56,16 @@ public class Pausa extends BasicGameState {
             }
         });
         painel.add(btRetomar);
+        
+        btMenuPrincipal = new Button(Constantes.substituir("pausa.menuPrincipal"));
+        btMenuPrincipal.setFont(Constantes.textoFont());
+        btMenuPrincipal.addAction(new Action(){
+            @Override
+            public void action() {
+                sbg.enterState(Constantes.ID_MENU_PRINCIPAL);
+            }
+        });
+        painel.add(btMenuPrincipal);
    }
 
     @Override

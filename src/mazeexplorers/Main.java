@@ -13,6 +13,8 @@ import View.Estados.ExploracaoAcabou;
 import View.Estados.MenuPrincipal;
 import View.Estados.Pausa;
 import View.Estados.TelaLabirinto;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -32,43 +34,43 @@ public class Main extends StateBasedGame {
     
     public static void main(String[] args) throws SlickException {
         
-//        try{
-//            janela = new AppGameContainer(new Main("Maze Explorers"));
-//            janela.setDisplayMode(1280, 768, true);//true
-//            janela.setShowFPS(false);//false
-//            
-//            
-//            janela.start();
-//        } catch (SlickException ex) {
-//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try{
+            janela = new AppGameContainer(new Main("Maze Explorers"));
+            janela.setDisplayMode(1280, 768, true);//true
+            janela.setShowFPS(false);//false
+            
+            
+            janela.start();
+        } catch (SlickException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
-        int[][] matriz = {new int[]{0, 0, 0, 0, 0, 0, 0, 0},
-                          new int[]{1, 0, 0, 0, 1, 1, 1, 1},
-                          new int[]{0, 1, 1, 1, 1, 0, 0, 0},
-                          new int[]{0, 1, 1, 0, 1, 1, 1, 0},
-                          new int[]{0, 1, 0, 1, 0, 1, 1, 0},
-                          new int[]{0, 1, 0, 0, 1, 0, 0, 0},
-                          new int[]{0, 1, 1, 1, 1, 1, 0, 0},
-                          new int[]{0, 0, 0, 0, 0, 0, 1, 0},
-        };
-        
-        No inicio = new No(1, 0);
-        No objetivo = new No(7, 6);
-        Labirinto labirinto = new Labirinto(matriz, inicio, objetivo);
-        System.out.println(labirinto);
-        
-        BuscaEmLargura busca = new BuscaEmLargura(labirinto);//falta arrumar a em largura
-        Caminho caminho = busca.buscar(new Acao(){
-            @Override
-            public void acao(No no, Direcao direcao) {
-                System.out.println(no+" "+direcao);
-            }
-        });
-        
-        System.out.println("\n\n\n"+caminho);
-        System.out.println(labirinto);
+//        int[][] matriz = {new int[]{0, 0, 0, 0, 0, 0, 0, 0},
+//                          new int[]{1, 0, 0, 0, 1, 1, 1, 1},
+//                          new int[]{0, 1, 1, 1, 1, 0, 0, 0},
+//                          new int[]{0, 1, 1, 0, 1, 1, 1, 0},
+//                          new int[]{0, 1, 0, 1, 0, 1, 1, 0},
+//                          new int[]{0, 1, 0, 0, 1, 0, 0, 0},
+//                          new int[]{0, 1, 1, 1, 1, 1, 0, 0},
+//                          new int[]{0, 0, 0, 0, 0, 0, 1, 0},
+//        };
+//        
+//        No inicio = new No(1, 0);
+//        No objetivo = new No(7, 6);
+//        Labirinto labirinto = new Labirinto(matriz, inicio, objetivo);
+//        System.out.println(labirinto);
+//        
+//        BuscaEmLargura busca = new BuscaEmLargura(labirinto);//falta arrumar a em largura
+//        Caminho caminho = busca.buscar(new Acao(){
+//            @Override
+//            public void acao(No no, Direcao direcao) {
+//                System.out.println(no+" "+direcao);
+//            }
+//        });
+//        
+//        System.out.println("\n\n\n"+caminho);
+//        System.out.println(labirinto);
 
     }
     

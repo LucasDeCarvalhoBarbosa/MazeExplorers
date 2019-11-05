@@ -32,6 +32,10 @@ public class LabirintoVisual {
         return new Ponto(x, y);
     }
     
+    public void render(int x, int y){
+        mapa.render(x, y);
+    }
+    
     //gets e sets
     public Labirinto getLabirinto() {
         return labirinto;

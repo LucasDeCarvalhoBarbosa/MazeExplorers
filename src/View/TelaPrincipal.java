@@ -27,7 +27,7 @@ public class TelaPrincipal extends BasicGame{//apagar esta classe
     @Override
     public void init(GameContainer container) throws SlickException {
         labirintoVisual = Modelos.geraLabirinto(0);
-        sprite = new Sprite(labirintoVisual.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio()), new DirecaoDireita());
+        sprite = new Sprite(labirintoVisual.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio()), new DirecaoDireita(), 0);
         
         //testando a traduão de npos para pontos na tela.
         System.out.println(labirintoVisual.getLabirinto().getInicio());

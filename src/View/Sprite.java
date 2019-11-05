@@ -30,11 +30,33 @@ public class Sprite {
     private final Animation baixo;
     private final Animation esquerda;
     
-    public Sprite(Ponto localizacao, Direcao direcaoInicial) throws SlickException{
+    public static final int BUSCA_LARGURA = 0;
+    public static final int BUSCA_PROFUNDIDADE = 1;
+    public static final int BUSCA_GULOSA = 2;
+    public static final int BUSCA_A_STAR = 3;
+    
+    public Sprite(Ponto localizacao, Direcao direcaoInicial, int codSprite) throws SlickException{
         this.localizacao = localizacao;
         this.velocidade = 0.06f;
         
-        String caminho = "assets/Sprites/personagem1/";
+        String nomeSprite;
+        
+        switch (codSprite) {
+            case BUSCA_LARGURA:
+                nomeSprite = "vampiro/";
+                break;
+            case BUSCA_PROFUNDIDADE:
+                nomeSprite = "fantasma/";
+                break;
+            case BUSCA_GULOSA:
+                nomeSprite = "abobora/";
+                break;
+            default:
+                nomeSprite = "bruxa/";
+                break;
+        }
+            
+        String caminho = "assets/Sprites/"+nomeSprite;
         
         Image[] imagensCima = new Image[]{new Image(caminho+"cima1.png"), new Image(caminho+"cima2.png"), new Image(caminho+"cima3.png")};
         Image[] imagensDireita = new Image[]{new Image(caminho+"direita1.png"), new Image(caminho+"direita2.png"), new Image(caminho+"direita3.png")};
