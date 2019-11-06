@@ -16,6 +16,7 @@ import org.newdawn.slick.SlickException;
 public class Constantes {
     
     public static String idiomaAtual = "en";//idioma padrão
+    public static String IDIOMA_PADRAO = "en";
     
 //    private static Properties configuracoes;
     private static Properties pt;
@@ -45,6 +46,23 @@ public class Constantes {
 //        
 //        return configuracoes;
 //    }
+    
+    public static String idiomaAtual(){
+        Properties propriedades = new Properties();
+        
+        try {
+            FileInputStream file = new FileInputStream("assets/Configuracoes/config.properties");
+            propriedades.load(file);
+            
+            return propriedades.getProperty("idiomaPadrao");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Constantes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Constantes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return IDIOMA_PADRAO;
+    }
     
     public static String substituir(String idioma, String chave){
         iniciaIdiomas();

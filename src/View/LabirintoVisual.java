@@ -1,5 +1,6 @@
 package View;
 
+import Biblioteca.Direcoes.Direcao;
 import Biblioteca.Labirinto;
 import Biblioteca.No;
 import Control.Ponto;
@@ -16,6 +17,8 @@ public class LabirintoVisual {
     private Ponto localizacao;
     
     private int tamanhoTiles;
+    
+    private Direcao direcaoInicial;
     
     
     public LabirintoVisual(){
@@ -67,6 +70,14 @@ public class LabirintoVisual {
 
     public void setTamanhoTiles(int tamanhoTiles) {
         this.tamanhoTiles = tamanhoTiles;
+    }
+
+    public Direcao getDirecaoInicial() {
+        return direcaoInicial;
+    }
+
+    public void setDirecaoInicial(Direcao direcaoInicial) {
+        this.direcaoInicial = direcaoInicial;
     }
     
 }

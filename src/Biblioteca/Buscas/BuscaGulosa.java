@@ -26,8 +26,12 @@ public class BuscaGulosa extends BuscaHeuristica{
         caminho.adiciona(inicio);
         
         //O No que eu estou usando no momento é sempre caminho.olhaTopo()
+        int contador = 0;//apagar
         while(!caminho.olhaTopo().equals(this.objetivo)){
+            contador++;
+            System.out.println("#"+contador);//apagar
             No proximoPasso = proximoPasso(caminho.olhaTopo(), caminho);
+            System.out.println("Proximo passo: "+proximoPasso);
             
             //verifica se o caminho retornou null porque não encontrou nenhum vizinho para explorar
             if(proximoPasso!=null)
@@ -48,9 +52,9 @@ public class BuscaGulosa extends BuscaHeuristica{
         List<No> vizinhos = noAtual.getVizinhos(labirinto.getEspaco(), caminho);
         this.atribuiHeuristica(vizinhos);
         
-//        if(vizinhos.size()>0){//se tiver pelo menos um vizinho válido para explorar
-//            return melhorNo(vizinhos);
-//        }
+        if(vizinhos.size()>0){//se tiver pelo menos um vizinho válido para explorar
+            return melhorNo(vizinhos);
+        }
         
         //se não tiver nenhum vizinho eu devo voltar um nível (voltar para o nó anterior, porque este não tem a solução)
         if(caminho.tamanho()>0){

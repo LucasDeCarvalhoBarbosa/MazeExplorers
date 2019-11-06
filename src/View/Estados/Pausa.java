@@ -52,7 +52,7 @@ public class Pausa extends BasicGameState {
         btRetomar.addAction(new Action(){
             @Override
             public void action() {
-                voltarMenuPrincipal();
+                retomar();
             }
         });
         painel.add(btRetomar);
@@ -62,7 +62,7 @@ public class Pausa extends BasicGameState {
         btMenuPrincipal.addAction(new Action(){
             @Override
             public void action() {
-                sbg.enterState(Constantes.ID_MENU_PRINCIPAL);
+                voltarMenuPrincipal();
             }
         });
         painel.add(btMenuPrincipal);
@@ -94,7 +94,8 @@ public class Pausa extends BasicGameState {
     }
     
     private void voltarMenuPrincipal(){
-        sbg.enterState(Constantes.ID_TELA_LABIRINTO);
+        ((TelaLabirinto) sbg.getState(Constantes.ID_TELA_LABIRINTO)).fecharSessao();
+        sbg.enterState(Constantes.ID_MENU_PRINCIPAL);
     }
     
 }

@@ -6,6 +6,8 @@ import Biblioteca.Labirinto;
 import Biblioteca.No;
 import Control.Acao;
 import Biblioteca.Buscas.BuscaEmLargura;
+import Biblioteca.Buscas.BuscaEmProfundidade;
+import Biblioteca.Buscas.BuscaGulosa;
 import View.Estados.Configuracoes;
 import View.Estados.Creditos;
 import View.Estados.EscolherTecnicas;
@@ -13,6 +15,7 @@ import View.Estados.ExploracaoAcabou;
 import View.Estados.MenuPrincipal;
 import View.Estados.Pausa;
 import View.Estados.TelaLabirinto;
+import View.Modelos;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.newdawn.slick.AppGameContainer;
@@ -45,23 +48,36 @@ public class Main extends StateBasedGame {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-
-//        int[][] matriz = {new int[]{0, 0, 0, 0, 0, 0, 0, 0},
-//                          new int[]{1, 0, 0, 0, 1, 1, 1, 1},
-//                          new int[]{0, 1, 1, 1, 1, 0, 0, 0},
-//                          new int[]{0, 1, 1, 0, 1, 1, 1, 0},
-//                          new int[]{0, 1, 0, 1, 0, 1, 1, 0},
-//                          new int[]{0, 1, 0, 0, 1, 0, 0, 0},
-//                          new int[]{0, 1, 1, 1, 1, 1, 0, 0},
-//                          new int[]{0, 0, 0, 0, 0, 0, 1, 0},
-//        };
+//int[][] tiles = { new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+//                                  new int[]{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,},
+//                                  new int[]{0,1,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,1,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,},
+//                                  new int[]{0,1,0,0,1,0,0,1,1,1,1,0,0,1,1,1,1,0,1,0,1,0,0,1,0,0,0,1,0,0,1,1,1,0,1,1,1,0,1,0,},
+//                                  new int[]{0,1,1,1,1,1,0,1,0,1,0,0,1,1,0,0,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0,0,1,0,1,0,0,0,1,0,},
+//                                  new int[]{0,1,0,0,0,0,0,1,0,1,1,1,1,0,0,1,1,1,1,0,1,0,0,0,0,1,0,0,1,1,1,0,1,1,1,1,1,1,1,0,},
+//                                  new int[]{0,1,0,1,1,1,1,1,0,0,1,0,0,0,1,1,0,0,1,0,1,0,0,1,1,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,},
+//                                  new int[]{0,1,1,1,0,0,0,0,0,1,1,0,0,0,1,0,0,0,1,0,1,0,0,1,0,0,1,1,1,0,1,0,0,0,1,1,1,0,1,0,},
+//                                  new int[]{0,1,0,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,1,0,0,1,0,0,1,0,0,0,1,0,1,0,0,1,0,0,1,0,},
+//                                  new int[]{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,},
+//                                  new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+//                                  new int[]{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
+//                                  new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+//                                  new int[]{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,},
+//                                  new int[]{0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,1,0,1,0,0,0,0,0,1,0,0,1,0,0,0,1,0,0,0,0,1,0,},
+//                                  new int[]{0,1,0,1,0,0,1,0,1,1,1,0,0,1,1,1,0,0,1,0,1,0,1,1,1,1,1,1,1,1,0,0,0,1,0,1,0,0,1,0,},
+//                                  new int[]{0,1,0,1,1,0,1,0,0,0,1,0,0,1,0,0,0,0,1,0,1,0,1,0,0,0,1,0,0,1,1,1,1,1,1,1,1,0,1,0,},
+//                                  new int[]{0,1,0,0,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1,0,1,0,1,0,1,1,1,0,1,1,0,0,0,0,1,0,1,0,1,0,},
+//                                  new int[]{0,1,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,0,0,1,1,1,1,0,0,0,0,0,1,0,},
+//                                  new int[]{0,1,0,1,1,1,0,0,1,0,1,0,1,1,0,1,0,0,1,0,1,0,1,1,1,1,1,1,0,1,0,0,1,1,1,1,1,0,1,0,},
+//                                  new int[]{0,1,0,0,1,0,0,1,1,1,1,0,0,1,1,1,1,0,1,0,1,0,0,0,1,0,0,1,1,1,0,0,1,0,0,0,1,0,1,0,},
+//                                  new int[]{0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,1,0,0,0,0,1,0,0,0,1,0,1,0,},
+//                                  new int[]{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,},
+//                                  new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,}};
+//                
+//        No inicio = new No(11, 0);
+//        No objetivo = new No(11, 39);   
+//        Labirinto labirinto = new Labirinto(tiles, inicio, objetivo);
 //        
-//        No inicio = new No(1, 0);
-//        No objetivo = new No(7, 6);
-//        Labirinto labirinto = new Labirinto(matriz, inicio, objetivo);
-//        System.out.println(labirinto);
-//        
-//        BuscaEmLargura busca = new BuscaEmLargura(labirinto);//falta arrumar a em largura
+//        BuscaGulosa busca = new BuscaGulosa(labirinto);//falta arrumar a em largura
 //        Caminho caminho = busca.buscar(new Acao(){
 //            @Override
 //            public void acao(No no, Direcao direcao) {

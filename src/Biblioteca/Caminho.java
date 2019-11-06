@@ -19,7 +19,7 @@ public class Caminho {
     public Caminho(){
         this.caminho = new Stack<>();
         nosExcluidos = new ArrayList<>();
-        nosPorLinha = 10;
+        nosPorLinha = 12;
     }
     
     /**

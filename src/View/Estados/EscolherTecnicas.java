@@ -128,6 +128,14 @@ public class EscolherTecnicas extends BasicGameState {
     private void explorar(){
         if((cbBuscaLargura.isSelected())||(cbBuscaProfundidade.isSelected())||
                         (cbBuscaGulosa.isSelected())||(cbBuscaAStar.isSelected())){
+            
+            boolean largura = cbBuscaLargura.isSelected();
+            boolean profundidade = cbBuscaProfundidade.isSelected();
+            boolean gulosa = cbBuscaGulosa.isSelected();
+            boolean aStar = cbBuscaAStar.isSelected();
+            
+            ((TelaLabirinto) sbg.getState(Constantes.ID_TELA_LABIRINTO)).buscasSelecionadas(largura, profundidade, gulosa, aStar);
+            
             sbg.enterState(Constantes.ID_TELA_LABIRINTO);
         }
     }
