@@ -8,6 +8,7 @@ import Control.Acao;
 import Biblioteca.Buscas.BuscaEmLargura;
 import Biblioteca.Buscas.BuscaEmProfundidade;
 import Biblioteca.Buscas.BuscaGulosa;
+import Control.Constantes;
 import View.Estados.Configuracoes;
 import View.Estados.Creditos;
 import View.Estados.EscolherTecnicas;
@@ -41,7 +42,7 @@ public class Main extends StateBasedGame {
             janela = new AppGameContainer(new Main("Maze Explorers"));
             janela.setDisplayMode(1280, 768, true);//true
             janela.setShowFPS(false);//false
-            
+            Constantes.carregaIdioma();
             
             janela.start();
         } catch (SlickException ex) {

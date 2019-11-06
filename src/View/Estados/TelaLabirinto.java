@@ -5,7 +5,10 @@ import Biblioteca.Buscas.BuscaEmLargura;
 import Biblioteca.Buscas.BuscaEmProfundidade;
 import Biblioteca.Buscas.BuscaGulosa;
 import Biblioteca.Direcoes.Direcao;
+import Biblioteca.Direcoes.DirecaoBaixo;
+import Biblioteca.Direcoes.DirecaoCima;
 import Biblioteca.Direcoes.DirecaoDireita;
+import Biblioteca.Direcoes.DirecaoEsquerda;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -21,6 +24,8 @@ import View.Sprite;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.newdawn.slick.AngelCodeFont;
+import org.newdawn.slick.Color;
 
 /**
  *
@@ -129,17 +134,45 @@ public class TelaLabirinto extends BasicGameState {
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         labirintoVisual.render(0, 0);
         
-        if(spriteBuscaLargura!=null)
+        if(spriteBuscaLargura!=null){
             spriteBuscaLargura.desenha(spriteBuscaLargura.getLocalizacao().getX(), spriteBuscaLargura.getLocalizacao().getY());
+            
+            g.setColor(Color.white);
+        g.setFont(new AngelCodeFont("assets/interface/fonts/arial14B.fnt", 
+                "assets/interface/fonts/arial14B_0.png"));
+        g.drawString(Constantes.substituir("lab.buscaLargura"),
+                spriteBuscaLargura.getLocalizacao().getX()-15, spriteBuscaLargura.getLocalizacao().getY()-12);
+        }
         
-        if(spriteBuscaProfundidade!=null)
+        if(spriteBuscaProfundidade!=null){
             spriteBuscaProfundidade.desenha(spriteBuscaProfundidade.getLocalizacao().getX(), spriteBuscaProfundidade.getLocalizacao().getY());
+            
+            g.setColor(Color.white);
+        g.setFont(new AngelCodeFont("assets/interface/fonts/arial14B.fnt", 
+                "assets/interface/fonts/arial14B_0.png"));
+        g.drawString(Constantes.substituir("lab.buscaProfundidade"),
+                spriteBuscaProfundidade.getLocalizacao().getX()-20, spriteBuscaProfundidade.getLocalizacao().getY()-12);
+        }
         
-        if(spriteBuscaGulosa!=null)
+        if(spriteBuscaGulosa!=null){
             spriteBuscaGulosa.desenha(spriteBuscaGulosa.getLocalizacao().getX(), spriteBuscaGulosa.getLocalizacao().getY());
+            
+            g.setColor(Color.white);
+        g.setFont(new AngelCodeFont("assets/interface/fonts/arial14B.fnt", 
+                "assets/interface/fonts/arial14B_0.png"));
+        g.drawString(Constantes.substituir("lab.buscaGulosa"),
+                spriteBuscaGulosa.getLocalizacao().getX()-10, spriteBuscaGulosa.getLocalizacao().getY()-12);
+        }
         
-        if(spriteBuscaAStar!=null)
+        if(spriteBuscaAStar!=null){
             spriteBuscaAStar.desenha(spriteBuscaAStar.getLocalizacao().getX(), spriteBuscaAStar.getLocalizacao().getY());
+            
+            g.setColor(Color.white);
+        g.setFont(new AngelCodeFont("assets/interface/fonts/arial14B.fnt", 
+                "assets/interface/fonts/arial14B_0.png"));
+        g.drawString(Constantes.substituir("lab.buscaAStar"),
+                spriteBuscaAStar.getLocalizacao().getX()+5, spriteBuscaAStar.getLocalizacao().getY()-12);
+        }
     }
 
     @Override
@@ -157,6 +190,21 @@ public class TelaLabirinto extends BasicGameState {
             acabou.setNosBuscaAStar(9);
             
             sbg.enterState(Constantes.ID_EXPLORACAO_ACABOU);
+        }
+        
+//        //por enquanto, depois apagar
+        Input input = container.getInput();
+        if(input.isKeyDown(Input.KEY_W)){
+            spriteBuscaAStar.andarCima(container, delta, new DirecaoBaixo());
+        }
+        if(input.isKeyDown(Input.KEY_S)){
+            spriteBuscaAStar.andarBaixo(container, delta, new DirecaoCima());
+        }
+        if(input.isKeyDown(Input.KEY_A)){
+            spriteBuscaAStar.andarEsquerda(container, delta, new DirecaoDireita());
+        }
+        if(input.isKeyDown(Input.KEY_D)){
+            spriteBuscaAStar.andarDireita(container, delta, new DirecaoEsquerda());
         }
         
     }

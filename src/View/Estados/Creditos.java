@@ -7,7 +7,6 @@ import SimpleGUI.SimpleGUI;
 import Util.Action;
 import Util.Dimension;
 import org.newdawn.slick.AngelCodeFont;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -15,6 +14,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import Control.Constantes;
+import org.newdawn.slick.Color;
 
 /**
  *
@@ -46,10 +46,11 @@ public class Creditos extends BasicGameState {
         
         lbCreditos = new Label(Constantes.substituir("cre.creditos"));
         lbCreditos.setFont(Constantes.tituloFont());
-        lbCreditos.setLocation(500, 150);
+        lbCreditos.setLocation(570, 150);
         gui.add(lbCreditos);
         
         painel = new Container(500, 230, 0, 0);
+        painel.setBackgroundColor(new Color(135, 206, 235, 180));
         gui.add(painel);
         
         lbDesenvolvedores = new Label(Constantes.substituir("cre.desenvolvedores"));

@@ -63,7 +63,7 @@ public class ExploracaoAcabou extends BasicGameState {
         
         lbTitulo = new Label(Constantes.substituir("exAcabou.fim"));
         lbTitulo.setFont(Constantes.tituloFont());
-        lbTitulo.setLocation(400, 150);
+        lbTitulo.setLocation(450, 150);
         gui.add(lbTitulo);
         
         pnBuscas = new Container(500, 230, 0, 0);
@@ -127,7 +127,7 @@ public class ExploracaoAcabou extends BasicGameState {
         
         btMenuPrincipal = new Button(Constantes.substituir("exAcabou.menuPrincipal"));
         btMenuPrincipal.setFont(Constantes.textoFont());
-        btMenuPrincipal.setLocation(560, 550);
+        btMenuPrincipal.setLocation(530, 550);
         btMenuPrincipal.addAction(new Action(){
             @Override
             public void action() {
@@ -169,6 +169,7 @@ public class ExploracaoAcabou extends BasicGameState {
     }
     
     private void voltar(){
+        ((TelaLabirinto) sbg.getState(Constantes.ID_TELA_LABIRINTO)).fecharSessao();
         sbg.enterState(Constantes.ID_MENU_PRINCIPAL);
     }
     

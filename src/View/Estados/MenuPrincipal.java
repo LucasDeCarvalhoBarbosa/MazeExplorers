@@ -50,10 +50,10 @@ public class MenuPrincipal extends BasicGameState {
         gui = new SimpleGUI(container, Constantes.textoFont());
         
         lbTitulo = new Label("Maze Explorers");
-        lbTitulo.setFont(Constantes.tituloFont());
+        lbTitulo.setFont(Constantes.mazeExplorersFont());
         lbTitulo.setBackgroundColor(new Color(255, 255, 255, 0));
         lbTitulo.setForegroundColor(Color.orange);
-        lbTitulo.setLocation(450, 150);
+        lbTitulo.setLocation(470, 150);
         gui.add(lbTitulo);
         
         painel = new Container(new Dimension(200, 400));

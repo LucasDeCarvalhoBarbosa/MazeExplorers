@@ -13,6 +13,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import Control.Constantes;
+import org.newdawn.slick.Color;
 
 /**
  *
@@ -48,10 +49,14 @@ public class EscolherTecnicas extends BasicGameState {
         
         lbTitulo = new Label(Constantes.substituir("tec.escolha"));
         lbTitulo.setFont(Constantes.tituloFont());
-        lbTitulo.setLocation(450, 150);
+        lbTitulo.setLocation(200, 150);//450, 150
+        lbTitulo.setBackgroundColor(new Color(255, 255, 255, 0));
+        lbTitulo.setForegroundColor(Color.white);
         gui.add(lbTitulo);
         
         pnBuscas = new Container(500, 230, 0, 0);
+        pnBuscas.setBackgroundColor(new Color(222, 222, 222, 180));
+        pnBuscas.setBorderColor(new Color(222, 222, 222, 180));
         gui.add(pnBuscas);
         
         cbBuscaLargura = new CheckBox(0, 0, 50, 30, Constantes.substituir("tec.buscaLargura"));

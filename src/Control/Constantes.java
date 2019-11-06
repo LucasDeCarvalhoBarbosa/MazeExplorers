@@ -16,9 +16,7 @@ import org.newdawn.slick.SlickException;
 public class Constantes {
     
     public static String idiomaAtual = "en";//idioma padrão
-    public static String IDIOMA_PADRAO = "en";
     
-//    private static Properties configuracoes;
     private static Properties pt;
     private static Properties en;
     private static Properties es;
@@ -47,27 +45,22 @@ public class Constantes {
 //        return configuracoes;
 //    }
     
-    public static String idiomaAtual(){
+    public static void  carregaIdioma(){
         Properties propriedades = new Properties();
         
         try {
-            FileInputStream file = new FileInputStream("assets/Configuracoes/config.properties");
+            FileInputStream file = new FileInputStream("assets/interface/configuracoes/config.properties");
             propriedades.load(file);
             
-            return propriedades.getProperty("idiomaPadrao");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Constantes.class.getName()).log(Level.SEVERE, null, ex);
+            idiomaAtual =  propriedades.getProperty("idioma");
         } catch (IOException ex) {
-            Logger.getLogger(Constantes.class.getName()).log(Level.SEVERE, null, ex);
+            idiomaAtual = "en";
         }
-        
-        return IDIOMA_PADRAO;
     }
     
     public static String substituir(String idioma, String chave){
         iniciaIdiomas();
         if(idioma.equals("pt")){
-            System.out.println("pt.getProperty("+chave+"): "+pt.getProperty(chave));
             return pt.getProperty(chave);
         }
         if(idioma.equals("es")){
@@ -119,13 +112,18 @@ public class Constantes {
     }
     
     public static AngelCodeFont textoFont() throws SlickException{
-        return new AngelCodeFont("assets/interface/fonts/ocr16.fnt", 
-                "assets/interface/fonts/ocr16_0.png");
+        return new AngelCodeFont("assets/interface/fonts/ocr20.fnt", 
+                "assets/interface/fonts/ocr20_0.png");
     }
     
-    public static AngelCodeFont tituloFont() throws SlickException{
-        return new AngelCodeFont("assets/interface/fonts/closeandopen32.fnt", 
-        "assets/interface/fonts/closeandopen32_0.png");
+    public static AngelCodeFont tituloFont() throws SlickException{//
+        return new AngelCodeFont("assets/interface/fonts/cornerstone32.fnt", 
+        "assets/interface/fonts/cornerstone32_0.png");
+    }
+    
+    public static AngelCodeFont mazeExplorersFont() throws SlickException{
+        return new AngelCodeFont("assets/interface/fonts/closeandopen36.fnt", 
+        "assets/interface/fonts/closeandopen36_0.png");
     }
     
 }
