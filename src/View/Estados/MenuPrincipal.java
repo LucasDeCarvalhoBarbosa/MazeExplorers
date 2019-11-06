@@ -16,6 +16,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import Control.Constantes;
+import org.newdawn.slick.tiled.TiledMap;
 
 /**
  *
@@ -25,10 +26,10 @@ public class MenuPrincipal extends BasicGameState {
     
     private StateBasedGame sbg;
     
+    //private TiledMap mapa;//[e para ser um LabirirntoVisual e é para terem personagens andando no fundo
+    
     private SimpleGUI gui;
-    
     private Label lbTitulo;
-    
     private Container painel;
     private Button btExplorar;
     private Button btConfiguracoes;
@@ -44,6 +45,8 @@ public class MenuPrincipal extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.sbg = game;
         
+        //mapa = new TiledMap("assets/labirintos/modelo0.tmx");
+        
         gui = new SimpleGUI(container, Constantes.textoFont());
         
         lbTitulo = new Label("Maze Explorers");
@@ -56,7 +59,7 @@ public class MenuPrincipal extends BasicGameState {
         painel = new Container(new Dimension(200, 400));
         painel.centralize(container);
         painel.setLocation(painel.getX(), 250);
-        painel.setBackgroundColor(new Color(135, 206, 235, 255));
+        painel.setBackgroundColor(new Color(135, 206, 235, 180));
         painel.setBorderColor(new Color(135, 206, 235, 255));
         gui.add(painel);
         
@@ -107,6 +110,7 @@ public class MenuPrincipal extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+        //mapa.render(0, 0);
         gui.renderGUI(g);
     }
 

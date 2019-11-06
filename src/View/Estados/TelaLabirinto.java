@@ -36,7 +36,7 @@ public class TelaLabirinto extends BasicGameState {
         this.sbg = game;
         
         mapa = new TiledMap("assets/labirintos/modelo1.tmx");
-        sprite = new Sprite(new Ponto(10, 10), new DirecaoDireita(), Sprite.BUSCA_A_STAR);
+        sprite = new Sprite(new Ponto(10, 10), new DirecaoDireita(), Sprite.BUSCA_PROFUNDIDADE);
     }
 
     @Override
