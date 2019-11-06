@@ -1,5 +1,9 @@
 package View;
 
+import Biblioteca.Buscas.Busca;
+import Biblioteca.Buscas.BuscaEmLargura;
+import Biblioteca.Buscas.BuscaEmProfundidade;
+import Biblioteca.Buscas.BuscaGulosa;
 import Biblioteca.Direcoes.Direcao;
 import Biblioteca.Direcoes.DirecaoBaixo;
 import Biblioteca.Direcoes.DirecaoBaixoDireita;
@@ -19,7 +23,9 @@ import org.newdawn.slick.SlickException;
  *
  * @author Lucas Barbosa
  */
-public class Sprite {
+public class Sprite extends Thread {
+    
+    private Busca busca;
     
     private Ponto localizacao;
     private float velocidade;
@@ -35,26 +41,35 @@ public class Sprite {
     public static final int BUSCA_GULOSA = 2;
     public static final int BUSCA_A_STAR = 3;
     
-    public Sprite(Ponto localizacao, Direcao direcaoInicial, int codSprite) throws SlickException{
+    public Sprite(Ponto localizacao, Direcao direcaoInicial, Busca busca) throws SlickException{
         this.localizacao = localizacao;
         this.velocidade = 0.06f;
         
         String nomeSprite;
         
-        switch (codSprite) {
-            case BUSCA_LARGURA:
-                nomeSprite = "vampiro/";
-                break;
-            case BUSCA_PROFUNDIDADE:
-                nomeSprite = "fantasma/";
-                break;
-            case BUSCA_GULOSA:
-                nomeSprite = "abobora/";
-                break;
-            default:
-                nomeSprite = "bruxa/";
-                break;
-        }
+//        switch (codSprite) {
+//            case BUSCA_LARGURA:
+//                nomeSprite = "vampiro/";
+//                break;
+//            case BUSCA_PROFUNDIDADE:
+//                nomeSprite = "fantasma/";
+//                break;
+//            case BUSCA_GULOSA:
+//                nomeSprite = "abobora/";
+//                break;
+//            default:
+//                nomeSprite = "bruxa/";
+//                break;
+//        }
+
+        if(busca instanceof BuscaEmLargura){
+            nomeSprite = "vampiro/";
+        }else if(busca instanceof BuscaEmProfundidade){
+            nomeSprite = "fantasma/";
+        }else if(busca instanceof BuscaGulosa){
+            nomeSprite = "abobora/";
+        }else
+            nomeSprite = "bruxa/";
             
         String caminho = "assets/Sprites/"+nomeSprite;
         
@@ -115,6 +130,11 @@ public class Sprite {
         atual = esquerda;
         atual.update(delta);
         localizacao.setX((localizacao.getX() - (delta * velocidade)));
+    }
+    
+    @Override
+    public void run(){
+        
     }
     
     //gets e sets

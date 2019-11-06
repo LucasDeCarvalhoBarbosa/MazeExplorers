@@ -37,11 +37,6 @@ public class TelaLabirinto extends BasicGameState {
     
     private LabirintoVisual labirintoVisual;
     
-    private BuscaEmLargura buscaEmLargura;
-    private BuscaEmProfundidade buscaEmProfundidade;
-    private BuscaGulosa buscaGulosa;
-    private BuscaAStar buscaAStar;
-    
     private Sprite spriteBuscaLargura;
     private Sprite spriteBuscaProfundidade;
     private Sprite spriteBuscaGulosa;
@@ -58,61 +53,56 @@ public class TelaLabirinto extends BasicGameState {
         this.labirintoVisual = labirintoVisual;
         
         if(largura){
-            buscaEmLargura = new BuscaEmLargura(labirintoVisual.getLabirinto());
-            
             Ponto p = labirintoVisual.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio());
             Direcao d = labirintoVisual.getDirecaoInicial();
             try {
-                spriteBuscaLargura = new Sprite(p, d, Sprite.BUSCA_LARGURA);
+                spriteBuscaLargura = new Sprite(p, d, new BuscaEmLargura(labirintoVisual.getLabirinto()));
             } catch (SlickException ex) {
                 Logger.getLogger(TelaLabirinto.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            spriteBuscaLargura.start();
         }
         
         if(profundidade){
-            buscaEmProfundidade = new BuscaEmProfundidade(labirintoVisual.getLabirinto());
-            
             Ponto p = labirintoVisual.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio());
             Direcao d = labirintoVisual.getDirecaoInicial();
             try {
-                spriteBuscaProfundidade = new Sprite(p, d, Sprite.BUSCA_PROFUNDIDADE);
+                spriteBuscaProfundidade = new Sprite(p, d, new BuscaEmProfundidade(labirintoVisual.getLabirinto()));
             } catch (SlickException ex) {
                 Logger.getLogger(TelaLabirinto.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            spriteBuscaProfundidade.start();
         }
         
         if(gulosa){
-            buscaGulosa = new BuscaGulosa(labirintoVisual.getLabirinto());
-            
             Ponto p = labirintoVisual.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio());
             Direcao d = labirintoVisual.getDirecaoInicial();
             try {
-                spriteBuscaGulosa = new Sprite(p, d, Sprite.BUSCA_GULOSA);
+                spriteBuscaGulosa = new Sprite(p, d, new BuscaGulosa(labirintoVisual.getLabirinto()));
             } catch (SlickException ex) {
                 Logger.getLogger(TelaLabirinto.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            spriteBuscaGulosa.start();
         }
         
-        if(aStar){
-            buscaAStar = new BuscaAStar(labirintoVisual.getLabirinto());
-            
+        if(aStar){  
             Ponto p = labirintoVisual.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio());
             Direcao d = labirintoVisual.getDirecaoInicial();
             try {
-                spriteBuscaAStar = new Sprite(p, d, Sprite.BUSCA_A_STAR);
+                spriteBuscaAStar = new Sprite(p, d, new BuscaAStar(labirintoVisual.getLabirinto()));
             } catch (SlickException ex) {
                 Logger.getLogger(TelaLabirinto.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            spriteBuscaAStar.start();
         }
     }
     
     public void fecharSessao(){
         labirintoVisual = null;
-        
-        buscaEmLargura = null;
-        buscaEmProfundidade = null;
-        buscaGulosa = null;
-        buscaAStar = null;
         
         spriteBuscaLargura = null;
         spriteBuscaProfundidade = null;

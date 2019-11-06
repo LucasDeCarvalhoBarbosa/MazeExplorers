@@ -38,16 +38,16 @@ public class Main extends StateBasedGame {
     
     public static void main(String[] args) throws SlickException {
         
-        try{
-            janela = new AppGameContainer(new Main("Maze Explorers"));
-            janela.setDisplayMode(1280, 768, true);//true
-            janela.setShowFPS(false);//false
-            Constantes.carregaIdioma();
-            
-            janela.start();
-        } catch (SlickException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try{
+//            janela = new AppGameContainer(new Main("Maze Explorers"));
+//            janela.setDisplayMode(1280, 768, true);//true
+//            janela.setShowFPS(false);//false
+//            Constantes.carregaIdioma();
+//            
+//            janela.start();
+//        } catch (SlickException ex) {
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
 //int[][] tiles = { new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
 //                                  new int[]{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,},
