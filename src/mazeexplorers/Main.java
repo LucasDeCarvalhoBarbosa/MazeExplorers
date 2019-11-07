@@ -1,17 +1,7 @@
 package mazeexplorers;
 
-import Biblioteca.Buscas.Busca;
-import Biblioteca.Buscas.BuscaAStar;
-import Biblioteca.Caminho;
-import Biblioteca.Direcoes.Direcao;
-import Biblioteca.Labirinto;
 import Biblioteca.No;
-import Control.Acao;
-import Biblioteca.Buscas.BuscaEmLargura;
-import Biblioteca.Buscas.BuscaEmProfundidade;
-import Biblioteca.Buscas.BuscaGulosa;
 import Control.Constantes;
-import Control.Ponto;
 import View.Estados.Configuracoes;
 import View.Estados.Creditos;
 import View.Estados.EscolherTecnicas;
@@ -19,7 +9,6 @@ import View.Estados.ExploracaoAcabou;
 import View.Estados.MenuPrincipal;
 import View.Estados.Pausa;
 import View.Estados.TelaLabirinto;
-import View.Modelos;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.newdawn.slick.AppGameContainer;
@@ -43,7 +32,7 @@ public class Main extends StateBasedGame {
         
         try{
             janela = new AppGameContainer(new Main("Maze Explorers"));
-            janela.setDisplayMode(1280, 768, false);//true
+            janela.setDisplayMode(1280, 768, true);//true
             janela.setShowFPS(false);//false
             Constantes.carregaIdioma();
             

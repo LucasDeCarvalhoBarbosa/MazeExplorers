@@ -94,7 +94,7 @@ public class Configuracoes extends BasicGameState {
         
         btVoltar = new Button(Constantes.substituir("conf.voltar"));
         btVoltar.setFont(Constantes.textoFont());
-        btVoltar.setLocation(50, 650);
+        btVoltar.setLocation(550, 400);
         btVoltar.addAction(new Action(){
             @Override
             public void action() {
