@@ -19,7 +19,7 @@ public class Caminho {
     public Caminho(){
         this.caminho = new Stack<>();
         nosExcluidos = new ArrayList<>();
-        nosPorLinha = 10;
+        nosPorLinha = 12;
     }
     
     /**
@@ -39,6 +39,15 @@ public class Caminho {
         }
         
         return false;
+    }
+    
+    public int getCusto() {
+        int custo = 0;
+        for(int i=0;i<caminho.size();i++){
+            custo += caminho.get(i).getCustoCaminho();
+        }
+        
+        return custo;
     }
     
     /**
@@ -156,6 +165,19 @@ public class Caminho {
      */
     public void setNoExcluido(int i, No no){
         nosExcluidos.set(i, no);
+    }
+    
+    public List<String> caminhoParaListString(){
+        List<String> lista = new ArrayList<>();
+        for(int i=0;i<caminho.size();i++){
+            String linha = caminho.get(i)+" ";
+            if(i!=0)
+                linha += caminho.get(i-1).direcaoEmRelacao(caminho.get(i));
+            
+            lista.add(linha);
+        }
+        
+        return lista;
     }
     
     /**

@@ -38,6 +38,7 @@ public class No {
         this.linha = linha;
         this.coluna = coluna;
         this.heuristica = -1;
+        this.custoCaminho = 0;
     }
     
     /**
@@ -66,7 +67,7 @@ public class No {
         List<No> vizinhos = new ArrayList<>();
         
         boolean temEspacoCima = linha-1 >= 0;
-        boolean temEspacoDireita = coluna+1 < espaco[coluna].length;
+        boolean temEspacoDireita = coluna+1 < espaco[0].length;//coluna+1 < espaco[coluna].length;
         boolean temEspacoBaixo = linha+1 < espaco.length;
         boolean temEspacoEsquerda = coluna-1 >= 0;
         

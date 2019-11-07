@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="40" height="24" tilewidth="32" tileheight="32" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" source="tiles.tsx"/>
+ <layer id="1" name="Camada de Tiles 1" width="40" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACq2XWa6kMAxFn+T9r6gYwwvQNWVLDdI9yiXq/qr6sCAmnp3rsMbPzyTaDuoOWg9aDvo9KOs92T72dJJZRDetZ9tz6uglN0vPIr3nt9GeSXLo4vk46M+HdJedb+hCHzkrFldp4iuWD3IBD5kz9kHrovUm3iS5RetROmaT2/SODfidqNh+3snrrnjQ0xsP/qqnx5PFy5aHQXp/TX6XDw/Td7PnKp2+f2jyVKL22/n+MtnBcuO1KE0c6KZui8nN+obv6F1NF2ciyc4kfm5svbRvNj4x3Uym15paUT/232XrbTyPBb+xs1g9oZfZoQ438R72PVktS9Qecn34OCp2atTJx8Fs8Z2ceR5yVGzIInxZJUtPLFHxhLNQZIf+6Kx+u+0jP+DX275vzXfvs2x+98bvzNZoe8mp95/7d4trv3u+k2pJ3Lu+c7Zm8U/fnx/QZvaI5RN9z7j2eS8b4BR8zgkYT7+mqLOBGhNvkUyS3GxPziZ5JPeL2WEfc+QbWA92+PNbtETtKzAtR52r5Ii4mCFj1LPWxRUz6V9y6zOY3DLrsbFJbhMly/enM7PFl2/U5a6YwBf6gfMFTuWoffUrnmNUkoz3Xyd+ioofe9TedexAD/kkj+DfZrbxE7xqsbGdyy/Tgb5icn4e9+Yd/9sZNxovmc7Tv7fJ8uxtTzY9Wb7Sl+4fOEMuPGfMuBZPHL+pB/1KTda4zkPmJHP1f3eOdv6SvzGus3K1NX7TL8+ouLmYPurLOz3Zmb52rsKjBtwB8Iv95I0zDC54/rjXgrfJdPv9j5pwd+CcEGux9R615/x+6nF4HdwX5pj3yvMfe/DB75S8g+t7Q1Nc76fUlfvBarqYL+Shj2utk/Goy2T7B9NBr5BL8AE8IbfgCvPOsdvxJTV8zpL3FPd8cGKzPeALd6VP7wfM8/5LutBHjomPueP/PuTQ547PHmYddwfyk43v/6jUaTSdU1znHPU7Zf8CJW9k2AAPAAA=
+  </data>
+ </layer>
+</map>

@@ -1,5 +1,6 @@
 package View;
 
+import Biblioteca.Direcoes.Direcao;
 import Biblioteca.Labirinto;
 import Biblioteca.No;
 import Control.Ponto;
@@ -17,19 +18,15 @@ public class LabirintoVisual {
     
     private int tamanhoTiles;
     
+    private Direcao direcaoInicial;
+    
     
     public LabirintoVisual(){
         localizacao = new Ponto(0f, 0f);
     }
     
-    public Ponto traduzirNoParaPonto(No no){
-        int larguraTile = mapa.getTileWidth();
-        int alturaTile = mapa.getTileHeight();
-        
-        float x = /*localizacao.getX() +*/ (no.getColuna() * larguraTile);
-        float y = /*localizacao.getY() +*/ (no.getLinha() * alturaTile);
-        
-        return new Ponto(x, y);
+    public void render(int x, int y){
+        mapa.render(x, y);
     }
     
     //gets e sets
@@ -63,6 +60,14 @@ public class LabirintoVisual {
 
     public void setTamanhoTiles(int tamanhoTiles) {
         this.tamanhoTiles = tamanhoTiles;
+    }
+
+    public Direcao getDirecaoInicial() {
+        return direcaoInicial;
+    }
+
+    public void setDirecaoInicial(Direcao direcaoInicial) {
+        this.direcaoInicial = direcaoInicial;
     }
     
 }
