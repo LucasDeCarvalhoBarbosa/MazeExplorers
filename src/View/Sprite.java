@@ -22,6 +22,7 @@ import Control.Ponto;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
@@ -62,7 +63,7 @@ public class Sprite extends Thread {
         this.nosPercorridos = 0;
         this.encontrouObjetivo = false;
         this.localizacao = localizacao;
-        this.velocidade = 0.2f;//0.06f
+        this.velocidade = 1f;//0.06f ou ultimanente: 0.2f
         this.container = container;
         
         String nomeSprite;
@@ -134,16 +135,17 @@ public class Sprite extends Thread {
         atual = cima;
         
         No noCima = new No(noAtual.getLinha()-1, noAtual.getColuna());
-        Ponto destino = /*Constantes.*/traduzirNoParaPonto(noCima);
+        Ponto destino = Constantes.traduzirNoParaPonto(noCima);
         
+        int contador = 0;
         while(localizacao.getY()>=destino.getY()){
             localizacao.setY( (localizacao.getY() - (delta * velocidade)));
             atual.update(delta);
             
             try {Thread.sleep(ATRASO);} catch (InterruptedException ex) {}
-            
+            contador++;
         }
-        
+        System.out.println("Cima\tprecisei de "+contador);
         
     }
     
@@ -155,16 +157,18 @@ public class Sprite extends Thread {
             atual = direita;
         
         No cimaDireita = new No(noAtual.getLinha()-1, noAtual.getColuna()+1);
-        Ponto destino = /*Constantes.*/traduzirNoParaPonto(cimaDireita);
+        Ponto destino = Constantes.traduzirNoParaPonto(cimaDireita);
         
+        int contador = 0;
         while((localizacao.getY()>=destino.getY()) && (localizacao.getX()<=destino.getX())){
             localizacao.setY( (localizacao.getY() - (delta * velocidade)));
             localizacao.setX( (localizacao.getX() + (delta * velocidade)));
             atual.update(delta);
             
             try {Thread.sleep(ATRASO);} catch (InterruptedException ex) {}
-            
+            contador++;
         }
+        System.out.println("CimaDireita\tprecisei de "+contador);
     }
     
     //vai andar para o nó exatamante a direita
@@ -172,16 +176,17 @@ public class Sprite extends Thread {
         atual = direita;
         
         No noDireita = new No(noAtual.getLinha(), noAtual.getColuna()+1);
-        Ponto destino = /*Constantes.*/traduzirNoParaPonto(noDireita);
+        Ponto destino = Constantes.traduzirNoParaPonto(noDireita);
 
+        int contador = 0;
         while(localizacao.getX()<=destino.getX()){
             localizacao.setX( (localizacao.getX() + (delta * velocidade)));
             atual.update(delta);
             
             try {Thread.sleep(ATRASO);} catch (InterruptedException ex) {}
-            
+            contador++;
         }
-        
+        System.out.println("Direita\tprecisei de "+contador);
     }
     
     public void andarBaixoDireita(GameContainer container, int delta){
@@ -192,7 +197,7 @@ public class Sprite extends Thread {
             atual = direita;
         
         No baixoDireita = new No(noAtual.getLinha()+1, noAtual.getColuna()+1);
-        Ponto destino = /*Constantes.*/traduzirNoParaPonto(baixoDireita);
+        Ponto destino = Constantes.traduzirNoParaPonto(baixoDireita);
         
         while((localizacao.getY()<=destino.getY()) && (localizacao.getX()<=destino.getX())){
             localizacao.setY( (localizacao.getY() + (delta * velocidade)));
@@ -208,7 +213,7 @@ public class Sprite extends Thread {
         atual = baixo;
         
         No noBaixo = new No(noAtual.getLinha()+1, noAtual.getColuna());
-        Ponto destino = /*Constantes.*/traduzirNoParaPonto(noBaixo);
+        Ponto destino = Constantes.traduzirNoParaPonto(noBaixo);
         
         while(localizacao.getY()<=destino.getY()){
             localizacao.setY( (localizacao.getY() + (delta * velocidade)));
@@ -228,7 +233,7 @@ public class Sprite extends Thread {
             atual = esquerda;
         
         No baixoEsquerda = new No(noAtual.getLinha()+1, noAtual.getColuna()-1);
-        Ponto destino = /*Constantes.*/traduzirNoParaPonto(baixoEsquerda);
+        Ponto destino = Constantes.traduzirNoParaPonto(baixoEsquerda);
         
         while((localizacao.getY()<=destino.getY()) && (localizacao.getX()>=destino.getX())){
             localizacao.setY( (localizacao.getY() + (delta * velocidade)));
@@ -244,7 +249,7 @@ public class Sprite extends Thread {
         atual = esquerda;
         
         No noEsquerda = new No(noAtual.getLinha(), noAtual.getColuna()-1);
-        Ponto destino = /*Constantes.*/traduzirNoParaPonto(noEsquerda);
+        Ponto destino = Constantes.traduzirNoParaPonto(noEsquerda);
         
         while(localizacao.getX()>=destino.getX()){
             localizacao.setX((localizacao.getX() - (delta * velocidade)));
@@ -264,7 +269,7 @@ public class Sprite extends Thread {
             atual = esquerda;
         
         No cimaEsquerda = new No(noAtual.getLinha()-1, noAtual.getColuna()-1);
-        Ponto destino = /*Constantes.*/traduzirNoParaPonto(cimaEsquerda);
+        Ponto destino = Constantes.traduzirNoParaPonto(cimaEsquerda);
         
         while((localizacao.getY()>=destino.getY()) && (localizacao.getX()>=destino.getX())){
             localizacao.setY( (localizacao.getY() - (delta * velocidade)));
@@ -318,51 +323,55 @@ public class Sprite extends Thread {
         
     }
     
-    public Ponto traduzirNoParaPonto(No no){
-        int larguraTile = TAMANHO_TILE;
-        int alturaTile = TAMANHO_TILE;
-        
-        float x =  (no.getColuna() * larguraTile) - larguraTile;
-        float y = (no.getLinha() * alturaTile) + alturaTile;
-        
-        return new Ponto(x, y);
-    }
+//    public Ponto traduzirNoParaPonto(No no){
+//        int larguraTile = TAMANHO_TILE;
+//        int alturaTile = TAMANHO_TILE;
+//        
+//        float x = (no.getColuna() * larguraTile);
+//        float y = (no.getLinha() * alturaTile);
+//        
+//        return new Ponto(x, y);
+//    }
     
     @Override
     public void run(){
         caminho = busca.buscar(new Acao(){
             @Override
             public void acao(No no, Direcao direcao) {
-                noAtual = no;//este deve ser o certo
-                //noAtual = Constantes.traudzirPontoParaNo(localizacao);
-                
-               //andarAteNo(no, container, delta);
+                //opção 1
+                noAtual = Constantes.traudzirPontoParaNo(localizacao);
+                andarAteNo(no, container, delta);
+               
+                //opção 2
                //localizacao = Constantes.traduzirNoParaPonto(no);
                
-                System.out.println(direcao);
+               //opção 3
+//               noAtual = no;//este deve ser o certo
+//               
+//                System.out.println(direcao);
+//                
+//               if(direcao instanceof DirecaoCima){
+//                   andarCima(container, delta);
+//                   
+//                   //simular uma caminhada para cima
+//                   
+//               }else if(direcao instanceof DirecaoCimaDireita){
+//                   andarCimaDireita(container, delta);
+//               }else if(direcao instanceof DirecaoDireita){
+//                   andarDireita(container, delta);
+//               }else if(direcao instanceof DirecaoBaixoDireita){
+//                   andarBaixoDireita(container, delta);
+//               }else if(direcao instanceof DirecaoBaixo){
+//                   andarBaixo(container, delta);
+//               }else if(direcao instanceof DirecaoBaixoEsquerda){
+//                   andarBaixoEsquerda(container, delta);
+//               }else if(direcao instanceof DirecaoEsquerda){
+//                   andarEsquerda(container, delta);
+//               }else if(direcao instanceof DirecaoCimaEsquerda){
+//                   andarCimaEsquerda(container, delta);
+//               }
                
-               if(direcao instanceof DirecaoCima){
-                   //andarCima(container, delta);
-                   
-                   //simular uma caminhada para cima
-                   
-               }else if(direcao instanceof DirecaoCimaDireita){
-                   andarCimaDireita(container, delta);
-               }else if(direcao instanceof DirecaoDireita){
-                   andarDireita(container, delta);
-               }else if(direcao instanceof DirecaoBaixoDireita){
-                   andarBaixoDireita(container, delta);
-               }else if(direcao instanceof DirecaoBaixo){
-                   andarBaixo(container, delta);
-               }else if(direcao instanceof DirecaoBaixoEsquerda){
-                   andarBaixoEsquerda(container, delta);
-               }else if(direcao instanceof DirecaoEsquerda){
-                   andarEsquerda(container, delta);
-               }else if(direcao instanceof DirecaoCimaEsquerda){
-                   andarCimaEsquerda(container, delta);
-               }
-               
-               try {Thread.sleep(100);} catch (InterruptedException ex) {}
+               //try {Thread.sleep(100);} catch (InterruptedException ex) {}
 
                 //System.out.println(no+" "+direcao);
                 

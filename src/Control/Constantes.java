@@ -52,8 +52,8 @@ public class Constantes {
         int larguraTile = TAMANHO_TILE;
         int alturaTile = TAMANHO_TILE;
         
-        float x = /*localizacao.getX() +*/ (no.getColuna() * larguraTile);
-        float y = /*localizacao.getY() +*/ (no.getLinha() * alturaTile);
+        float x = (no.getColuna() * larguraTile);
+        float y = (no.getLinha() * alturaTile);
         
         //float x = 
         

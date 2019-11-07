@@ -44,7 +44,7 @@ public class Main extends StateBasedGame {
         try{
             janela = new AppGameContainer(new Main("Maze Explorers"));
             janela.setDisplayMode(1280, 768, false);//true
-            //janela.setShowFPS(false);//false
+            janela.setShowFPS(false);//false
             Constantes.carregaIdioma();
             
             janela.start();

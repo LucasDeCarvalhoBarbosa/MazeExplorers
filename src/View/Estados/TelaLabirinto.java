@@ -37,6 +37,8 @@ public class TelaLabirinto extends BasicGameState {
     
     private LabirintoVisual labirintoVisual;
     
+    private TiledMap teste;//apagar
+    
     private Sprite spriteBuscaLargura;
     private Sprite spriteBuscaProfundidade;
     private Sprite spriteBuscaGulosa;
@@ -51,6 +53,12 @@ public class TelaLabirinto extends BasicGameState {
             Logger.getLogger(TelaLabirinto.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.labirintoVisual = labirintoVisual;
+        
+//        try {
+//            teste = new TiledMap("assets/labirintos/teste.tmx");
+//        } catch (SlickException ex) {
+//            Logger.getLogger(TelaLabirinto.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         
         if(largura){
             Ponto p = Constantes.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio());
@@ -191,6 +199,7 @@ public class TelaLabirinto extends BasicGameState {
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         labirintoVisual.render(0, 0);
+        //teste.render(0, 0);
         
         if(spriteBuscaLargura!=null){
             spriteBuscaLargura.desenha(spriteBuscaLargura.getLocalizacao().getX(), spriteBuscaLargura.getLocalizacao().getY());
