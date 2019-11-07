@@ -68,7 +68,7 @@ public class ExploracaoAcabou extends BasicGameState {
         lbTitulo.setLocation(450, 100);
         gui.add(lbTitulo);
         
-        lbNosPercorridos = new Label("Nós percorridos");
+        lbNosPercorridos = new Label(Constantes.substituir("exAcabou.nosPercorridos"));
         lbNosPercorridos.setFont(Constantes.textoFont());
         lbNosPercorridos.setLocation(575, 190);
         lbNosPercorridos.setBackgroundColor(new Color(0.874f,0.874f,0.874f,1));
@@ -163,6 +163,7 @@ public class ExploracaoAcabou extends BasicGameState {
     
     private void atualizaTexto(){
         lbTitulo.setText(Constantes.substituir("exAcabou.fim"));
+        lbNosPercorridos.setText(Constantes.substituir("exAcabou.nosPercorridos"));
         lbBuscaLargura.setText(Constantes.substituir("exAcabou.buscaLargura"));
         lbBuscaProfundidade.setText(Constantes.substituir("exAcabou.buscaProfundidade"));
         lbBuscaGulosa.setText(Constantes.substituir("exAcabou.buscaGulosa"));

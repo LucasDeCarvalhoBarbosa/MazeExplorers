@@ -167,6 +167,19 @@ public class Caminho {
         nosExcluidos.set(i, no);
     }
     
+    public List<String> caminhoParaListString(){
+        List<String> lista = new ArrayList<>();
+        for(int i=0;i<caminho.size();i++){
+            String linha = caminho.get(i)+" ";
+            if(i!=0)
+                linha += caminho.get(i-1).direcaoEmRelacao(caminho.get(i));
+            
+            lista.add(linha);
+        }
+        
+        return lista;
+    }
+    
     /**
      * Reporesentação customizada do Caminho em uma String substituindo o 
      * método de java.lang.Object.

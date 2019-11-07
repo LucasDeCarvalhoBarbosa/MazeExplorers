@@ -57,31 +57,16 @@ public class Sprite extends Thread {
     public static final int BUSCA_GULOSA = 2;
     public static final int BUSCA_A_STAR = 3;
     
-    private static final int ATRASO = 3;//1
+    private static final int ATRASO = 3;//1 ou melho 3
     
     public Sprite(Ponto localizacao, Direcao direcaoInicial, Busca busca, GameContainer container) throws SlickException{
         this.nosPercorridos = 0;
         this.encontrouObjetivo = false;
         this.localizacao = localizacao;
-        this.velocidade = 1f;//0.06f ou ultimanente: 0.2f
+        this.velocidade = 1f;//0.06f ou ultimanente: 0.2f, melhor 1
         this.container = container;
         
         String nomeSprite;
-        
-//        switch (codSprite) {
-//            case BUSCA_LARGURA:
-//                nomeSprite = "vampiro/";
-//                break;
-//            case BUSCA_PROFUNDIDADE:
-//                nomeSprite = "fantasma/";
-//                break;
-//            case BUSCA_GULOSA:
-//                nomeSprite = "abobora/";
-//                break;
-//            default:
-//                nomeSprite = "bruxa/";
-//                break;
-//        }
 
         this.busca = busca;
 
@@ -323,16 +308,6 @@ public class Sprite extends Thread {
         
     }
     
-//    public Ponto traduzirNoParaPonto(No no){
-//        int larguraTile = TAMANHO_TILE;
-//        int alturaTile = TAMANHO_TILE;
-//        
-//        float x = (no.getColuna() * larguraTile);
-//        float y = (no.getLinha() * alturaTile);
-//        
-//        return new Ponto(x, y);
-//    }
-    
     @Override
     public void run(){
         caminho = busca.buscar(new Acao(){
@@ -341,39 +316,6 @@ public class Sprite extends Thread {
                 //opção 1
                 noAtual = Constantes.traudzirPontoParaNo(localizacao);
                 andarAteNo(no, container, delta);
-               
-                //opção 2
-               //localizacao = Constantes.traduzirNoParaPonto(no);
-               
-               //opção 3
-//               noAtual = no;//este deve ser o certo
-//               
-//                System.out.println(direcao);
-//                
-//               if(direcao instanceof DirecaoCima){
-//                   andarCima(container, delta);
-//                   
-//                   //simular uma caminhada para cima
-//                   
-//               }else if(direcao instanceof DirecaoCimaDireita){
-//                   andarCimaDireita(container, delta);
-//               }else if(direcao instanceof DirecaoDireita){
-//                   andarDireita(container, delta);
-//               }else if(direcao instanceof DirecaoBaixoDireita){
-//                   andarBaixoDireita(container, delta);
-//               }else if(direcao instanceof DirecaoBaixo){
-//                   andarBaixo(container, delta);
-//               }else if(direcao instanceof DirecaoBaixoEsquerda){
-//                   andarBaixoEsquerda(container, delta);
-//               }else if(direcao instanceof DirecaoEsquerda){
-//                   andarEsquerda(container, delta);
-//               }else if(direcao instanceof DirecaoCimaEsquerda){
-//                   andarCimaEsquerda(container, delta);
-//               }
-               
-               //try {Thread.sleep(100);} catch (InterruptedException ex) {}
-
-                //System.out.println(no+" "+direcao);
                 
                 nosPercorridos++;
             }

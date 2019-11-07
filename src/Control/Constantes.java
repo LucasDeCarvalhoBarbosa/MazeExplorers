@@ -1,9 +1,13 @@
 package Control;
 
 import Biblioteca.No;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,21 +36,6 @@ public class Constantes {
     
     public static final int TAMANHO_TILE = 32;
     
-//    public static Properties configuracoes(){
-//        if(configuracoes==null){
-//            configuracoes = new Properties();
-//            try {
-//                FileInputStream file = new FileInputStream("assets/interface/configuracoes/configuracoes.properties");
-//                configuracoes.load(file);
-//            } catch (FileNotFoundException ex) {
-//                Logger.getLogger(Constantes.class.getName()).log(Level.SEVERE, null, ex);
-//            } catch (IOException ex) {
-//                Logger.getLogger(Constantes.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//        
-//        return configuracoes;
-//    }
     
     public static Ponto traduzirNoParaPonto(No no){
         int larguraTile = TAMANHO_TILE;
@@ -130,6 +119,28 @@ public class Constantes {
             }
             
         }
+        
+    }
+    
+    public static void escreveArquivo(File arquivo,List <String> linhas){
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(arquivo);
+        } catch (IOException ex) {}
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        
+        try {
+            int i = 0;
+            while(i<linhas.size()){
+                if(!linhas.get(i).isEmpty()){
+                    bufferedWriter.write(linhas.get(i));
+                    bufferedWriter.newLine();
+                }
+                i++;
+            }
+            bufferedWriter.close();
+            fileWriter.close();
+        } catch (IOException ex) {}
         
     }
     

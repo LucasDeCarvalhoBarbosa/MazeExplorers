@@ -5,10 +5,6 @@ import Biblioteca.Buscas.BuscaEmLargura;
 import Biblioteca.Buscas.BuscaEmProfundidade;
 import Biblioteca.Buscas.BuscaGulosa;
 import Biblioteca.Direcoes.Direcao;
-import Biblioteca.Direcoes.DirecaoBaixo;
-import Biblioteca.Direcoes.DirecaoCima;
-import Biblioteca.Direcoes.DirecaoDireita;
-import Biblioteca.Direcoes.DirecaoEsquerda;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -21,6 +17,8 @@ import Control.Ponto;
 import View.LabirintoVisual;
 import View.Modelos;
 import View.Sprite;
+import java.io.File;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,8 +35,6 @@ public class TelaLabirinto extends BasicGameState {
     
     private LabirintoVisual labirintoVisual;
     
-    private TiledMap teste;//apagar
-    
     private Sprite spriteBuscaLargura;
     private Sprite spriteBuscaProfundidade;
     private Sprite spriteBuscaGulosa;
@@ -48,17 +44,12 @@ public class TelaLabirinto extends BasicGameState {
         LabirintoVisual labirintoVisual = null;
         try {
             Random r = new Random();
-            labirintoVisual = Modelos.geraLabirinto(0);//r.nextInt(3)
+            labirintoVisual = Modelos.geraLabirinto(r.nextInt(3));//r.nextInt(3)
         } catch (SlickException ex) {
             Logger.getLogger(TelaLabirinto.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.labirintoVisual = labirintoVisual;
         
-//        try {
-//            teste = new TiledMap("assets/labirintos/teste.tmx");
-//        } catch (SlickException ex) {
-//            Logger.getLogger(TelaLabirinto.class.getName()).log(Level.SEVERE, null, ex);
-//        }
         
         if(largura){
             Ponto p = Constantes.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio());
@@ -133,28 +124,40 @@ public class TelaLabirinto extends BasicGameState {
         }
     }
     
-    public void verificaTodosEncontraram(){//verificar
-        if(todosEncontraramObjetivo()){
+    public void verificaTodosEncontraram(){
+        if(todosEncontraramObjetivo()){//se todos já encontrarm o objetivo
             ExploracaoAcabou acabou = (ExploracaoAcabou) sbg.getState(Constantes.ID_EXPLORACAO_ACABOU);
             
-            if(spriteBuscaLargura!=null)
+            if(spriteBuscaLargura!=null){
+                List<String> linhas = spriteBuscaLargura.getCaminho().caminhoParaListString();
+                Constantes.escreveArquivo(new File("resultado_busca_largura.txt"), linhas);
+                
                 acabou.setNosBuscaLargura(spriteBuscaLargura.getNosPercorridos());
-            else
+            }else
                 acabou.setNosBuscaLargura(0);
             
-            if(spriteBuscaProfundidade!=null)
+            if(spriteBuscaProfundidade!=null){
+                List<String> linhas = spriteBuscaProfundidade.getCaminho().caminhoParaListString();
+                Constantes.escreveArquivo(new File("resultado_busca_gulosa.txt"), linhas);
+                
                 acabou.setNosBuscaProfundidade(spriteBuscaProfundidade.getNosPercorridos());
-            else
+            }else
                 acabou.setNosBuscaProfundidade(0);
             
-            if(spriteBuscaGulosa!=null)
+            if(spriteBuscaGulosa!=null){
+                List<String> linhas = spriteBuscaGulosa.getCaminho().caminhoParaListString();
+                Constantes.escreveArquivo(new File("resultado_busca_gulosa.txt"), linhas);
+                
                 acabou.setNosBuscaGulosa(spriteBuscaGulosa.getNosPercorridos());
-            else
+            }else
                 acabou.setNosBuscaGulosa(0);
             
-            if(spriteBuscaAStar!=null)
+            if(spriteBuscaAStar!=null){
+                List<String> linhas = spriteBuscaAStar.getCaminho().caminhoParaListString();
+                Constantes.escreveArquivo(new File("resultado_busca_gulosa.txt"), linhas);
+                
                 acabou.setNosBuscaAStar(spriteBuscaAStar.getNosPercorridos());
-            else acabou.setNosBuscaAStar(0);
+            }else acabou.setNosBuscaAStar(0);
             
             sbg.enterState(Constantes.ID_EXPLORACAO_ACABOU);
         }
@@ -199,7 +202,6 @@ public class TelaLabirinto extends BasicGameState {
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         labirintoVisual.render(0, 0);
-        //teste.render(0, 0);
         
         if(spriteBuscaLargura!=null){
             spriteBuscaLargura.desenha(spriteBuscaLargura.getLocalizacao().getX(), spriteBuscaLargura.getLocalizacao().getY());
@@ -251,39 +253,6 @@ public class TelaLabirinto extends BasicGameState {
         atualizaDeltaSprites(delta);
         
         verificaTodosEncontraram();
-        
-        
-        
-        //por enquanto, depois apagar
-        if(container.getInput().isKeyDown(Input.KEY_SPACE)){
-            ExploracaoAcabou acabou = (ExploracaoAcabou) sbg.getState(Constantes.ID_EXPLORACAO_ACABOU);
-            acabou.setNosBuscaLargura(15);
-            acabou.setNosBuscaProfundidade(17);
-            acabou.setNosBuscaGulosa(10);
-            acabou.setNosBuscaAStar(9);
-            
-            sbg.enterState(Constantes.ID_EXPLORACAO_ACABOU);
-        }
-        
-//        //por enquanto, depois apagar
-//        Input input = container.getInput();
-//        if(input.isKeyDown(Input.KEY_W)){
-//            spriteBuscaAStar.andarCima(container, delta);
-//            //System.out.println("cima: "+spriteBuscaAStar.getLocalizacao()+" velocidade: "+spriteBuscaAStar.getVelocidade());
-//        }
-//        if(input.isKeyDown(Input.KEY_S)){
-//            spriteBuscaAStar.andarBaixo(container, delta);
-//            //System.out.println("baixo: "+spriteBuscaAStar.getLocalizacao()+" velocidade: "+spriteBuscaAStar.getVelocidade());
-//        }
-//        if(input.isKeyDown(Input.KEY_A)){
-//            spriteBuscaAStar.andarEsquerda(container, delta);
-//            //System.out.println("esquerda: "+spriteBuscaAStar.getLocalizacao()+" velocidade: "+spriteBuscaAStar.getVelocidade());
-//        }
-//        if(input.isKeyDown(Input.KEY_D)){
-//            spriteBuscaAStar.andarDireita(container, delta);
-//            //System.out.println("direita: "+spriteBuscaAStar.getLocalizacao()+" velocidade: "+spriteBuscaAStar.getVelocidade());
-//        }
-        
     }
     
 }
