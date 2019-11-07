@@ -14,6 +14,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import Control.Constantes;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.tiled.TiledMap;
 
 /**
  *
@@ -22,6 +23,8 @@ import org.newdawn.slick.Color;
 public class EscolherTecnicas extends BasicGameState {
     
     private StateBasedGame sbg;
+    
+    TiledMap tiledMap;
     
     private SimpleGUI gui;
     
@@ -45,6 +48,8 @@ public class EscolherTecnicas extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.sbg = game;
         
+        tiledMap = ((MenuPrincipal) sbg.getState(Constantes.ID_MENU_PRINCIPAL)).getTiledMap();
+        
         gui = new SimpleGUI(container, Constantes.textoFont());
         
         lbTitulo = new Label(Constantes.substituir("tec.escolha"));
@@ -55,8 +60,8 @@ public class EscolherTecnicas extends BasicGameState {
         gui.add(lbTitulo);
         
         pnBuscas = new Container(500, 230, 0, 0);
-        pnBuscas.setBackgroundColor(new Color(222, 222, 222, 180));
-        pnBuscas.setBorderColor(new Color(222, 222, 222, 180));
+        pnBuscas.setBackgroundColor(new Color(135, 206, 235, 180));
+        pnBuscas.setBorderColor(new Color(135, 206, 235, 180));
         gui.add(pnBuscas);
         
         cbBuscaLargura = new CheckBox(0, 0, 50, 30, Constantes.substituir("tec.buscaLargura"));
@@ -100,6 +105,7 @@ public class EscolherTecnicas extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+        tiledMap.render(0, 0);
         gui.renderGUI(g);
     }
 

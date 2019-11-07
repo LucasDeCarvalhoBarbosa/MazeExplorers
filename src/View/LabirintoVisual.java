@@ -25,16 +25,6 @@ public class LabirintoVisual {
         localizacao = new Ponto(0f, 0f);
     }
     
-    public Ponto traduzirNoParaPonto(No no){
-        int larguraTile = mapa.getTileWidth();
-        int alturaTile = mapa.getTileHeight();
-        
-        float x = /*localizacao.getX() +*/ (no.getColuna() * larguraTile);
-        float y = /*localizacao.getY() +*/ (no.getLinha() * alturaTile);
-        
-        return new Ponto(x, y);
-    }
-    
     public void render(int x, int y){
         mapa.render(x, y);
     }

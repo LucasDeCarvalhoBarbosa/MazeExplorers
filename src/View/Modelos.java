@@ -4,6 +4,7 @@ import Biblioteca.Direcoes.DirecaoBaixo;
 import Biblioteca.Direcoes.DirecaoDireita;
 import Biblioteca.Labirinto;
 import Biblioteca.No;
+import Control.Constantes;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -62,7 +63,7 @@ public class Modelos {
                 objetivo = new No(11, 39);
                 visual.setLabirinto(new Labirinto(tiles, inicio, objetivo));
                 visual.setMapa(new TiledMap(MAPA_0));
-                visual.setTamanhoTiles(32);
+                visual.setTamanhoTiles(Constantes.TAMANHO_TILE);
                 visual.setDirecaoInicial(new DirecaoDireita());
                 return visual;
                 
@@ -96,7 +97,7 @@ public class Modelos {
 //                objetivo = new No();
 //                visual.setLabirinto(new Labirinto(tiles1, inicio, objetivo));
                 visual.setMapa(new TiledMap(MAPA_1));
-                visual.setTamanhoTiles(32);
+                visual.setTamanhoTiles(Constantes.TAMANHO_TILE);
                 //visual.setDirecaoInicial();
                 return visual;
                 
@@ -130,7 +131,7 @@ public class Modelos {
                 objetivo = new No(23, 5);
                 visual.setLabirinto(new Labirinto(tiles2, inicio, objetivo));
                 visual.setMapa(new TiledMap(MAPA_2));
-                visual.setTamanhoTiles(32);
+                visual.setTamanhoTiles(Constantes.TAMANHO_TILE);
                 visual.setDirecaoInicial(new DirecaoBaixo());
                 return visual;
                 
@@ -164,7 +165,7 @@ public class Modelos {
                 objetivo = new No(22, 39);
                 visual.setLabirinto(new Labirinto(tiles3, inicio, objetivo));
                 visual.setMapa(new TiledMap(MAPA_3));
-                visual.setTamanhoTiles(32);
+                visual.setTamanhoTiles(Constantes.TAMANHO_TILE);
                 visual.setDirecaoInicial(new DirecaoDireita());
                 return visual;
                 

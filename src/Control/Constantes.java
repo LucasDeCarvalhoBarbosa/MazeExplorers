@@ -1,5 +1,6 @@
 package Control;
 
+import Biblioteca.No;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -29,6 +30,8 @@ public class Constantes {
     public static final int ID_PAUSA = 5;
     public static final int ID_EXPLORACAO_ACABOU = 6;
     
+    public static final int TAMANHO_TILE = 32;
+    
 //    public static Properties configuracoes(){
 //        if(configuracoes==null){
 //            configuracoes = new Properties();
@@ -44,6 +47,25 @@ public class Constantes {
 //        
 //        return configuracoes;
 //    }
+    
+    public static Ponto traduzirNoParaPonto(No no){
+        int larguraTile = TAMANHO_TILE;
+        int alturaTile = TAMANHO_TILE;
+        
+        float x = /*localizacao.getX() +*/ (no.getColuna() * larguraTile);
+        float y = /*localizacao.getY() +*/ (no.getLinha() * alturaTile);
+        
+        //float x = 
+        
+        return new Ponto(x, y);
+    }
+    
+    public static No traudzirPontoParaNo(Ponto ponto){
+        int linha = (int) (ponto.getY() / TAMANHO_TILE);
+        int coluna = (int) (ponto.getX() / TAMANHO_TILE);
+        
+        return new No(linha, coluna);
+    }
     
     public static void  carregaIdioma(){
         Properties propriedades = new Properties();

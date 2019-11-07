@@ -13,6 +13,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import Control.Constantes;
+import org.newdawn.slick.Color;
 
 /**
  *
@@ -30,6 +31,7 @@ public class ExploracaoAcabou extends BasicGameState {
     private SimpleGUI gui;
     
     private Label lbTitulo;
+    private Label lbNosPercorridos;
     private Container pnBuscas;
     
     private Container pnBuscaLargura;
@@ -63,8 +65,14 @@ public class ExploracaoAcabou extends BasicGameState {
         
         lbTitulo = new Label(Constantes.substituir("exAcabou.fim"));
         lbTitulo.setFont(Constantes.tituloFont());
-        lbTitulo.setLocation(450, 150);
+        lbTitulo.setLocation(450, 100);
         gui.add(lbTitulo);
+        
+        lbNosPercorridos = new Label("Nós percorridos");
+        lbNosPercorridos.setFont(Constantes.textoFont());
+        lbNosPercorridos.setLocation(575, 190);
+        lbNosPercorridos.setBackgroundColor(new Color(0.874f,0.874f,0.874f,1));
+        gui.add(lbNosPercorridos);
         
         pnBuscas = new Container(500, 230, 0, 0);
         gui.add(pnBuscas);

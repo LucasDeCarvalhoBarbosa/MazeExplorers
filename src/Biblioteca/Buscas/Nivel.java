@@ -32,7 +32,8 @@ public class Nivel {
      */
     public Nivel geraProximoNivel(Caminho caminho){
         //apagar
-        System.out.println("\n\n"+this+"\n");
+        //System.out.println("\n\n"+this+"\n");
+        
         No origem = labirinto.getInicio();
 
         List<No> lista = new ArrayList<>();

@@ -62,9 +62,10 @@ public class BuscaEmLargura extends Busca {
     @Override
     protected No proximoPasso(No noAtual, Caminho caminho){
         if(caminho.tamanho()>0){
-            System.out.println("caminho: "+caminho);
-            System.out.println("noAtual: "+noAtual);
-            System.out.println("caminho.olhaTopo(): "+caminho.olhaTopo());
+//            System.out.println("caminho: "+caminho);
+//            System.out.println("noAtual: "+noAtual);
+//            System.out.println("caminho.olhaTopo(): "+caminho.olhaTopo());
+            
 //            if(!noAtual.isAdjacente(caminho.olhaTopo())){
 //                return null;//se os nós não forem adjacentes, deve retornar.
 //            }else

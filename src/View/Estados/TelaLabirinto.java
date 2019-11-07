@@ -53,10 +53,10 @@ public class TelaLabirinto extends BasicGameState {
         this.labirintoVisual = labirintoVisual;
         
         if(largura){
-            Ponto p = labirintoVisual.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio());
+            Ponto p = Constantes.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio());
             Direcao d = labirintoVisual.getDirecaoInicial();
             try {
-                spriteBuscaLargura = new Sprite(p, d, new BuscaEmLargura(labirintoVisual.getLabirinto()));
+                spriteBuscaLargura = new Sprite(p, d, new BuscaEmLargura(labirintoVisual.getLabirinto()), sbg.getContainer());
             } catch (SlickException ex) {
                 Logger.getLogger(TelaLabirinto.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -65,10 +65,10 @@ public class TelaLabirinto extends BasicGameState {
         }
         
         if(profundidade){
-            Ponto p = labirintoVisual.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio());
+            Ponto p = Constantes.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio());
             Direcao d = labirintoVisual.getDirecaoInicial();
             try {
-                spriteBuscaProfundidade = new Sprite(p, d, new BuscaEmProfundidade(labirintoVisual.getLabirinto()));
+                spriteBuscaProfundidade = new Sprite(p, d, new BuscaEmProfundidade(labirintoVisual.getLabirinto()), sbg.getContainer());
             } catch (SlickException ex) {
                 Logger.getLogger(TelaLabirinto.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -77,10 +77,10 @@ public class TelaLabirinto extends BasicGameState {
         }
         
         if(gulosa){
-            Ponto p = labirintoVisual.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio());
+            Ponto p = Constantes.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio());
             Direcao d = labirintoVisual.getDirecaoInicial();
             try {
-                spriteBuscaGulosa = new Sprite(p, d, new BuscaGulosa(labirintoVisual.getLabirinto()));
+                spriteBuscaGulosa = new Sprite(p, d, new BuscaGulosa(labirintoVisual.getLabirinto()), sbg.getContainer());
             } catch (SlickException ex) {
                 Logger.getLogger(TelaLabirinto.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -89,10 +89,10 @@ public class TelaLabirinto extends BasicGameState {
         }
         
         if(aStar){  
-            Ponto p = labirintoVisual.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio());
+            Ponto p = Constantes.traduzirNoParaPonto(labirintoVisual.getLabirinto().getInicio());
             Direcao d = labirintoVisual.getDirecaoInicial();
             try {
-                spriteBuscaAStar = new Sprite(p, d, new BuscaAStar(labirintoVisual.getLabirinto()));
+                spriteBuscaAStar = new Sprite(p, d, new BuscaAStar(labirintoVisual.getLabirinto()), sbg.getContainer());
             } catch (SlickException ex) {
                 Logger.getLogger(TelaLabirinto.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -108,6 +108,74 @@ public class TelaLabirinto extends BasicGameState {
         spriteBuscaProfundidade = null;
         spriteBuscaGulosa = null;
         spriteBuscaAStar = null;
+    }
+    
+    public void atualizaDeltaSprites(int delta){
+        if(spriteBuscaLargura!=null){
+            spriteBuscaLargura.setDelta(delta);
+        }
+        if(spriteBuscaProfundidade!=null){
+            spriteBuscaProfundidade.setDelta(delta);
+        }
+        if(spriteBuscaGulosa!=null){
+            spriteBuscaGulosa.setDelta(delta);
+        }
+        if(spriteBuscaAStar!=null){
+            spriteBuscaAStar.setDelta(delta);
+        }
+    }
+    
+    public void verificaTodosEncontraram(){//verificar
+        if(todosEncontraramObjetivo()){
+            ExploracaoAcabou acabou = (ExploracaoAcabou) sbg.getState(Constantes.ID_EXPLORACAO_ACABOU);
+            
+            if(spriteBuscaLargura!=null)
+                acabou.setNosBuscaLargura(spriteBuscaLargura.getNosPercorridos());
+            else
+                acabou.setNosBuscaLargura(0);
+            
+            if(spriteBuscaProfundidade!=null)
+                acabou.setNosBuscaProfundidade(spriteBuscaProfundidade.getNosPercorridos());
+            else
+                acabou.setNosBuscaProfundidade(0);
+            
+            if(spriteBuscaGulosa!=null)
+                acabou.setNosBuscaGulosa(spriteBuscaGulosa.getNosPercorridos());
+            else
+                acabou.setNosBuscaGulosa(0);
+            
+            if(spriteBuscaAStar!=null)
+                acabou.setNosBuscaAStar(spriteBuscaAStar.getNosPercorridos());
+            else acabou.setNosBuscaAStar(0);
+            
+            sbg.enterState(Constantes.ID_EXPLORACAO_ACABOU);
+        }
+    }
+    
+    private boolean todosEncontraramObjetivo(){
+        boolean largura = false;
+        boolean profundidade = false;
+        boolean gulosa = false;
+        boolean aStar = false;
+        
+        if(spriteBuscaLargura==null)
+            largura = true;
+        else
+            largura = spriteBuscaLargura.isEncontrouObjetivo();
+        
+        if(spriteBuscaProfundidade==null)
+            profundidade = true;
+        else profundidade = spriteBuscaProfundidade.isEncontrouObjetivo();
+        
+        if(spriteBuscaGulosa==null)
+            gulosa = true;
+        else gulosa = spriteBuscaGulosa.isEncontrouObjetivo();
+        
+        if(spriteBuscaAStar==null)
+            aStar = true;
+        else aStar = spriteBuscaAStar.isEncontrouObjetivo();
+
+        return largura && profundidade && gulosa && aStar;
     }
 
     @Override
@@ -171,6 +239,12 @@ public class TelaLabirinto extends BasicGameState {
             sbg.enterState(Constantes.ID_PAUSA);
         }
         
+        atualizaDeltaSprites(delta);
+        
+        verificaTodosEncontraram();
+        
+        
+        
         //por enquanto, depois apagar
         if(container.getInput().isKeyDown(Input.KEY_SPACE)){
             ExploracaoAcabou acabou = (ExploracaoAcabou) sbg.getState(Constantes.ID_EXPLORACAO_ACABOU);
@@ -183,19 +257,23 @@ public class TelaLabirinto extends BasicGameState {
         }
         
 //        //por enquanto, depois apagar
-        Input input = container.getInput();
-        if(input.isKeyDown(Input.KEY_W)){
-            spriteBuscaAStar.andarCima(container, delta, new DirecaoBaixo());
-        }
-        if(input.isKeyDown(Input.KEY_S)){
-            spriteBuscaAStar.andarBaixo(container, delta, new DirecaoCima());
-        }
-        if(input.isKeyDown(Input.KEY_A)){
-            spriteBuscaAStar.andarEsquerda(container, delta, new DirecaoDireita());
-        }
-        if(input.isKeyDown(Input.KEY_D)){
-            spriteBuscaAStar.andarDireita(container, delta, new DirecaoEsquerda());
-        }
+//        Input input = container.getInput();
+//        if(input.isKeyDown(Input.KEY_W)){
+//            spriteBuscaAStar.andarCima(container, delta);
+//            //System.out.println("cima: "+spriteBuscaAStar.getLocalizacao()+" velocidade: "+spriteBuscaAStar.getVelocidade());
+//        }
+//        if(input.isKeyDown(Input.KEY_S)){
+//            spriteBuscaAStar.andarBaixo(container, delta);
+//            //System.out.println("baixo: "+spriteBuscaAStar.getLocalizacao()+" velocidade: "+spriteBuscaAStar.getVelocidade());
+//        }
+//        if(input.isKeyDown(Input.KEY_A)){
+//            spriteBuscaAStar.andarEsquerda(container, delta);
+//            //System.out.println("esquerda: "+spriteBuscaAStar.getLocalizacao()+" velocidade: "+spriteBuscaAStar.getVelocidade());
+//        }
+//        if(input.isKeyDown(Input.KEY_D)){
+//            spriteBuscaAStar.andarDireita(container, delta);
+//            //System.out.println("direita: "+spriteBuscaAStar.getLocalizacao()+" velocidade: "+spriteBuscaAStar.getVelocidade());
+//        }
         
     }
     

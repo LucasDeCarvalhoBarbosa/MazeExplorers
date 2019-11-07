@@ -38,6 +38,7 @@ public class No {
         this.linha = linha;
         this.coluna = coluna;
         this.heuristica = -1;
+        this.custoCaminho = 0;
     }
     
     /**

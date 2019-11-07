@@ -41,6 +41,15 @@ public class Caminho {
         return false;
     }
     
+    public int getCusto() {
+        int custo = 0;
+        for(int i=0;i<caminho.size();i++){
+            custo += caminho.get(i).getCustoCaminho();
+        }
+        
+        return custo;
+    }
+    
     /**
      * Adiciona o No passado por parâmtro no Caminho.
      * 

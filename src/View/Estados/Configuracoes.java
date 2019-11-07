@@ -7,7 +7,6 @@ import Components.RadioButton;
 import SimpleGUI.SimpleGUI;
 import Util.Action;
 import Util.ButtonGroup;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -22,6 +21,8 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.tiled.TiledMap;
 
 /**
  *
@@ -30,6 +31,8 @@ import java.util.logging.Logger;
 public class Configuracoes extends BasicGameState {
     
     private StateBasedGame sbg;
+    
+    private TiledMap tiledMap;
     
     private SimpleGUI gui;
     
@@ -50,6 +53,8 @@ public class Configuracoes extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.sbg = game;
         
+        tiledMap = ((MenuPrincipal) sbg.getState(Constantes.ID_MENU_PRINCIPAL)).getTiledMap();
+        
         gui = new SimpleGUI(container, Constantes.textoFont());
         
         lbConfiguracoes = new Label(Constantes.substituir("conf.titulo"));
@@ -58,6 +63,7 @@ public class Configuracoes extends BasicGameState {
         gui.add(lbConfiguracoes);
         
         pnIdiomas = new Container(500, 230, 0, 0);
+        pnIdiomas.setBackgroundColor(new Color(135, 206, 235, 180));
         gui.add(pnIdiomas);
         
         rbPortugues = new RadioButton(0, 0, 50, 30, Constantes.substituir("conf.portugues"));
@@ -100,6 +106,7 @@ public class Configuracoes extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+        tiledMap.render(0, 0);
         gui.renderGUI(g);
     }
 

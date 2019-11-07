@@ -26,12 +26,8 @@ public class BuscaGulosa extends BuscaHeuristica{
         caminho.adiciona(inicio);
         
         //O No que eu estou usando no momento é sempre caminho.olhaTopo()
-        int contador = 0;//apagar
         while(!caminho.olhaTopo().equals(this.objetivo)){
-            contador++;
-            System.out.println("#"+contador);//apagar
             No proximoPasso = proximoPasso(caminho.olhaTopo(), caminho);
-            System.out.println("Proximo passo: "+proximoPasso);
             
             //verifica se o caminho retornou null porque não encontrou nenhum vizinho para explorar
             if(proximoPasso!=null)

@@ -16,6 +16,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import Control.Constantes;
+import java.util.Random;
 import org.newdawn.slick.tiled.TiledMap;
 
 /**
@@ -26,7 +27,7 @@ public class MenuPrincipal extends BasicGameState {
     
     private StateBasedGame sbg;
     
-    //private TiledMap mapa;//[e para ser um LabirirntoVisual e é para terem personagens andando no fundo
+    private TiledMap tiledMap;
     
     private SimpleGUI gui;
     private Label lbTitulo;
@@ -35,6 +36,23 @@ public class MenuPrincipal extends BasicGameState {
     private Button btConfiguracoes;
     private Button btCreditos;
     private Button btSair;
+    
+    private TiledMap escolheMapaAleatorio() throws SlickException{
+        Random r = new Random();
+        switch(r.nextInt(4)){
+            case 0:
+                return new TiledMap("assets/labirintos/modelo0.tmx");
+                
+            case 1:
+                return new TiledMap("assets/labirintos/modelo2.tmx");
+                
+            case 2:
+                return new TiledMap("assets/labirintos/modelo2.tmx");
+                
+            default:
+                return new TiledMap("assets/labirintos/modelo3.tmx");
+        }
+    }
 
     @Override
     public int getID() {
@@ -45,7 +63,7 @@ public class MenuPrincipal extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.sbg = game;
         
-        //mapa = new TiledMap("assets/labirintos/modelo0.tmx");
+        tiledMap = escolheMapaAleatorio();
         
         gui = new SimpleGUI(container, Constantes.textoFont());
         
@@ -65,7 +83,7 @@ public class MenuPrincipal extends BasicGameState {
         
         btExplorar = new Button(Constantes.substituir("mp.explorar"));
         btExplorar.setFont(Constantes.textoFont());
-        //btExplorar.setBackgroundColor(Color.white);
+        btExplorar.setBackgroundColor(new Color(200, 200, 200));
         btExplorar.addAction(new Action(){
             @Override
             public void action() {
@@ -76,7 +94,7 @@ public class MenuPrincipal extends BasicGameState {
         
         btConfiguracoes = new Button(Constantes.substituir("mp.configuracoes"));
         btConfiguracoes.setFont(Constantes.textoFont());
-        //btConfiguracoes.setBackgroundColor(Color.white);
+        btConfiguracoes.setBackgroundColor(new Color(200, 200, 200));
         btConfiguracoes.addAction(new Action(){
             @Override
             public void action() {
@@ -87,7 +105,7 @@ public class MenuPrincipal extends BasicGameState {
         
         btCreditos = new Button(Constantes.substituir("mp.creditos"));
         btCreditos.setFont(Constantes.textoFont());
-        //btCreditos.setBackgroundColor(Color.white);
+        btCreditos.setBackgroundColor(new Color(200, 200, 200));
         btCreditos.addAction(new Action(){
             @Override
             public void action() {
@@ -98,7 +116,7 @@ public class MenuPrincipal extends BasicGameState {
         
         btSair = new Button(Constantes.substituir("mp.sair"));
         btSair.setFont(Constantes.textoFont());
-        //btSair.setBackgroundColor(Color.white);
+        btSair.setBackgroundColor(new Color(200, 200, 200));
         btSair.addAction(new Action(){
             @Override
             public void action() {
@@ -110,7 +128,7 @@ public class MenuPrincipal extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        //mapa.render(0, 0);
+        tiledMap.render(0, 0);
         gui.renderGUI(g);
     }
 
@@ -125,6 +143,15 @@ public class MenuPrincipal extends BasicGameState {
         btConfiguracoes.setText(Constantes.substituir("mp.configuracoes"));
         btCreditos.setText(Constantes.substituir("mp.creditos"));
         btSair.setText(Constantes.substituir("mp.sair"));
+    }
+    
+    //gets e sets
+    public TiledMap getTiledMap() {
+        return tiledMap;
+    }
+
+    public void setTiledMap(TiledMap tiledMap) {
+        this.tiledMap = tiledMap;
     }
     
 }

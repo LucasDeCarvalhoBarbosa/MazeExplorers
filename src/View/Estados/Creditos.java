@@ -15,6 +15,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import Control.Constantes;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.tiled.TiledMap;
 
 /**
  *
@@ -32,6 +33,8 @@ public class Creditos extends BasicGameState {
     private Label lbDesenvolvedor1;
     private Label lbDesenvolvedor2;
     private Button btVoltar;
+    
+    private TiledMap tiledMap;
 
     @Override
     public int getID() {
@@ -41,6 +44,8 @@ public class Creditos extends BasicGameState {
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.sbg = game;
+        
+        tiledMap = ((MenuPrincipal) sbg.getState(Constantes.ID_MENU_PRINCIPAL)).getTiledMap();
         
         gui = new SimpleGUI(container, Constantes.textoFont());
         
@@ -80,6 +85,7 @@ public class Creditos extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+        tiledMap.render(0, 0);
         gui.renderGUI(g);
     }
 
